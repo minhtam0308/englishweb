@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
+    "buffer": "^6.0.3",
     "react": "^19.0.0",
     "react-bootstrap": "^2.10.7",
     "react-dom": "^19.0.0",
@@ -15,6 +16,8 @@
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.2",
+    "sass": "^1.83.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

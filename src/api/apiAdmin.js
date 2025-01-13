@@ -10,6 +10,16 @@ const CreateLession = async (data) => {
 
 }
 
+const apiGetAllLession = async () => {
+    try {
+        const res = await axios.get('api/getAllLession');
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export {
-    CreateLession
+    CreateLession,
+    apiGetAllLession
 }

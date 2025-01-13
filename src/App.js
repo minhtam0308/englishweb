@@ -4,6 +4,7 @@ import Home from './pages/User/home';
 import HomeCenterContent from './components/User/HomeCenterContent';
 import Chat from './components/User/Chat';
 import Lession from './pages/Admin/Lession';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -17,6 +18,19 @@ function App() {
 
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
 
     </>
   );

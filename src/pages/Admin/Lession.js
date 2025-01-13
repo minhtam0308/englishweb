@@ -1,8 +1,11 @@
+import '../../styles/admin.scss'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { CreateLession } from '../../api/apiAdmin'
 import { FaFolderPlus } from "react-icons/fa6";
+import { toast } from 'react-toastify';
+import AListLession from '../../components/Admin/AListLession';
 
 const Lession = () => {
     const [show, setShow] = useState(false);
@@ -23,7 +26,7 @@ const Lession = () => {
 
     const HandleCreateLession = async () => {
         if (!title || !description || !level) {
-            alert("you need to enter enought data");
+            toast.warn("you need to enter enought data");
 
         } else {
             const res = await CreateLession({
@@ -32,6 +35,12 @@ const Lession = () => {
                 description,
                 level
             });
+            // console.log(res);
+            if (res.EC === 0) {
+                toast.success(res.EM);
+            } else {
+                toast.error("ERROR is not processed");
+            }
         }
 
         handleClose();
@@ -44,6 +53,7 @@ const Lession = () => {
             const reader = new FileReader()
             reader.readAsDataURL(file)
             reader.onload = () => {
+                // console.log("send", reader.result) it have header data:image/png;base64;
                 resolve(reader.result)
             }
             reader.onerror = reject
@@ -57,9 +67,17 @@ const Lession = () => {
 
 
     }
+    // console.log("image", image)
     return (
         <>
-            <Button className='btn btn-primary' onClick={handleShow}>Add new Lession</Button>
+            <div className='lession-container'>
+                <div className='btn-createLession'>
+                    <Button className='btn btn-primary' onClick={handleShow}>Add new Lession</Button>
+                </div>
+                <div className='list-lession'>
+                    <AListLession />
+                </div>
+            </div>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -94,7 +112,7 @@ const Lession = () => {
                                 {!image ?
                                     <span>preview</span>
                                     :
-                                    <img src={`data:image/png;base64;${image}`} alt=""></img>
+                                    <img src={image} alt=""></img>
                                 }
                             </div>
                         </div>
