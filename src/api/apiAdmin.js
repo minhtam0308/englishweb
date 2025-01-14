@@ -19,7 +19,32 @@ const apiGetAllLession = async () => {
     }
 }
 
+const apiPostUpdateLessById = async (id, title, description, image, level) => {
+    try {
+        const res = await axios.post('api/postUpdateLessById', {
+            id, title, description, image, level
+        });
+        return res;
+    } catch (e) {
+        console.log("api", e);
+    }
+}
+
+const apiPostDeleteLessById = async (id) => {
+    try {
+        const res = await axios.post('api/postDeleteLessById', {
+            id
+        });
+        return res;
+    } catch (e) {
+        console.log("api", e);
+    }
+}
+
+
 export {
     CreateLession,
-    apiGetAllLession
+    apiGetAllLession,
+    apiPostUpdateLessById,
+    apiPostDeleteLessById
 }

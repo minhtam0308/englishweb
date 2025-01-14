@@ -5,6 +5,7 @@ import HomeCenterContent from './components/User/HomeCenterContent';
 import Chat from './components/User/Chat';
 import Lession from './pages/Admin/Lession';
 import { Bounce, ToastContainer } from 'react-toastify';
+import 'react-medium-image-zoom/dist/styles.css'
 
 function App() {
   return (

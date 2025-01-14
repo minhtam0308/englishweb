@@ -5,7 +5,9 @@ import Modal from 'react-bootstrap/Modal';
 import { CreateLession } from '../../api/apiAdmin'
 import { FaFolderPlus } from "react-icons/fa6";
 import { toast } from 'react-toastify';
+import Zoom from 'react-medium-image-zoom'
 import AListLession from '../../components/Admin/AListLession';
+
 
 const Lession = () => {
     const [show, setShow] = useState(false);
@@ -13,6 +15,7 @@ const Lession = () => {
     const [image, setImage] = useState('');
     const [description, setDescription] = useState('');
     const [level, setLevel] = useState('0');
+    const [reset, setReset] = useState(false);
 
     const handleClose = () => {
         setShow(false);
@@ -38,6 +41,7 @@ const Lession = () => {
             // console.log(res);
             if (res.EC === 0) {
                 toast.success(res.EM);
+                setReset(!reset);
             } else {
                 toast.error("ERROR is not processed");
             }
@@ -75,7 +79,10 @@ const Lession = () => {
                     <Button className='btn btn-primary' onClick={handleShow}>Add new Lession</Button>
                 </div>
                 <div className='list-lession'>
-                    <AListLession />
+                    <AListLession
+                        reset={reset}
+                        setReset={setReset}
+                    />
                 </div>
             </div>
 
@@ -112,7 +119,8 @@ const Lession = () => {
                                 {!image ?
                                     <span>preview</span>
                                     :
-                                    <img src={image} alt=""></img>
+                                    <Zoom><img src={image} alt=""></img></Zoom>
+
                                 }
                             </div>
                         </div>

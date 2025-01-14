@@ -18,9 +18,19 @@
                 white-space: nowrap;
                 vertical-align: middle;
 
+                .setbtn {
+                    text-align: center;
+                }
+
                 &.image {
                     height: 200px;
                     width: 30vW;
+
+                    img {
+                        height: 200px;
+                        width: 200px;
+                        object-fit: cover;
+                    }
                 }
             }
 
