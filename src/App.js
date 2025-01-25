@@ -6,6 +6,7 @@ import Chat from './components/User/Chat';
 import Lession from './pages/Admin/Lession';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
+import AAddQAndA from './components/Admin/AAddQAndA';
 
 function App() {
   return (
@@ -16,6 +17,9 @@ function App() {
           <Route path='/chat' element={<Chat />} />
         </Route>
         <Route path='/admin' element={<Lession />}>
+
+        </Route>
+        <Route path='/admin/CRUDQuestion' element={<AAddQAndA />}>
 
         </Route>
       </Routes>

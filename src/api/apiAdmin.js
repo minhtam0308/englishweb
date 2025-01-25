@@ -41,10 +41,33 @@ const apiPostDeleteLessById = async (id) => {
     }
 }
 
+const apiPostCreateQuestion = async (ques, ans, idLession) => {
+    try {
+        const res = await axios.post("api/postCreateQues", {
+            idLession,
+            ques,
+            ans
+        })
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const apiGetAllQA = async (id) => {
+    try {
+        let res = await axios.get(`api/getAllQA?id=${id}`)
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
 
 export {
     CreateLession,
     apiGetAllLession,
     apiPostUpdateLessById,
-    apiPostDeleteLessById
+    apiPostDeleteLessById,
+    apiPostCreateQuestion,
+    apiGetAllQA
 }

@@ -90,7 +90,7 @@
     background-color: aliceblue;
     width: 55vw;
     margin: auto;
-    height: 3000px;
+    height: auto;
 }
 
 .right-content {

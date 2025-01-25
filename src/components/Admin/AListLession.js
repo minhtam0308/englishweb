@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Buffer } from 'buffer';
 import { apiGetAllLession, apiPostDeleteLessById, apiPostUpdateLessById } from '../../api/apiAdmin';
-import Zoom from 'react-medium-image-zoom'
+import Zoom from 'react-medium-image-zoom';
 import { FaPencilAlt } from "react-icons/fa";
 import { ImBin2 } from "react-icons/im";
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
+import { CiSquareMore } from "react-icons/ci";
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -188,6 +190,13 @@ const AListLession = (props) => {
                                                 color={'red'}
                                                 size={'1.5em'}
                                             /></button>
+                                        <NavLink to={'/admin/CRUDQuestion'}
+                                            state={{ val }}
+
+                                        >
+                                            <button className='btn btn-info mx-1'><CiSquareMore /></button>
+
+                                        </NavLink>
                                     </div>
 
                                 </td>

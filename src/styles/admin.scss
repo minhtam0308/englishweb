@@ -9,31 +9,68 @@
             top: 0;
         }
 
-        .listLession-td {
+
+    }
+}
+
+.listLession-td {
 
 
-            td {
-                overflow: hidden;
-                max-width: 30ch;
-                white-space: nowrap;
-                vertical-align: middle;
+    td {
+        overflow: hidden;
+        max-width: 30ch;
+        white-space: nowrap;
+        vertical-align: middle;
 
-                .setbtn {
-                    text-align: center;
-                }
+        .setbtn {
+            text-align: center;
+        }
 
-                &.image {
-                    height: 200px;
-                    width: 30vW;
+        &.image {
+            height: 200px;
+            width: 30vW;
 
-                    img {
-                        height: 200px;
-                        width: 200px;
-                        object-fit: cover;
-                    }
-                }
+            img {
+                height: 200px;
+                width: 200px;
+                object-fit: cover;
             }
-
         }
     }
+
+}
+
+
+
+
+
+.card-container {
+    .excard {
+
+        .content-card {
+            .title {
+                font-size: 25px;
+                font-weight: 600;
+            }
+        }
+
+        .image {
+            height: 160px;
+
+            img {
+                height: 160px;
+                width: 80%;
+            }
+        }
+    }
+}
+
+
+.add-qa-container {
+    margin: 10px;
+}
+
+.add-ans {
+    display: flex;
+    gap: 15px;
 }

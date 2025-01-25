@@ -1,11 +1,11 @@
-import '../../styles/admin.scss'
+import '../../styles/admin.scss';
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { CreateLession } from '../../api/apiAdmin'
+import { CreateLession } from '../../api/apiAdmin';
 import { FaFolderPlus } from "react-icons/fa6";
 import { toast } from 'react-toastify';
-import Zoom from 'react-medium-image-zoom'
+import Zoom from 'react-medium-image-zoom';
 import AListLession from '../../components/Admin/AListLession';
 
 
