@@ -59,7 +59,16 @@ const apiGetAllQA = async (id) => {
         let res = await axios.get(`api/getAllQA?id=${id}`)
         return res;
     } catch (e) {
-        console.log(e)
+        console.log(e);
+    }
+}
+
+const apiPostDeleteQuesById = async (id) => {
+    try {
+        let res = await axios.post(`api/postDeleteQuesById`, { id });
+        return res
+    } catch (e) {
+        console.log(e);
     }
 }
 
@@ -69,5 +78,6 @@ export {
     apiPostUpdateLessById,
     apiPostDeleteLessById,
     apiPostCreateQuestion,
-    apiGetAllQA
+    apiGetAllQA,
+    apiPostDeleteQuesById
 }

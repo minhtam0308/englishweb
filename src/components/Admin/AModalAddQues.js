@@ -146,6 +146,7 @@ const AModalAddQues = (props) => {
         const res = await apiPostCreateQuestion(ques, ans, props.idLession);
         if (res.EC === 0) {
             toast.success(res.EM);
+            props.setClickSave(!props.clickSave);
         } else if (res.EC === 1) {
             toast.error(res.EM);
         } else {

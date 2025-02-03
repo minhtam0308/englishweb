@@ -12,6 +12,8 @@ const AAddQAndA = (props) => {
     let lession = location.state.val;
     const [show, setShow] = useState(false);
 
+    const [clickSave, setClickSave] = useState(true)
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -57,6 +59,7 @@ const AAddQAndA = (props) => {
                 <div className="content-qa-container">
                     <AListQA
                         id={lession.id}
+                        clickSave={clickSave}
                     />
                 </div>
                 <div className="btn-modal-addqa m-3">
@@ -67,6 +70,8 @@ const AAddQAndA = (props) => {
                         show={show}
                         handleClose={handleClose}
                         idLession={lession.id}
+                        clickSave={clickSave}
+                        setClickSave={setClickSave}
                     />
 
                 </div>
