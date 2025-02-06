@@ -6,26 +6,35 @@ import { Buffer } from 'buffer';
 import { Table } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { ImBin2 } from "react-icons/im";
+import AModalUpdateQA from "./AModalUpdateQA";
 
 
 const AListQA = (props) => {
 
+    const { id } = props;
     const [dataQA, setDataQA] = useState();
     const [refresh, setRefresh] = useState(false);
+    const [quesUpdate, setQuesUpdate] = useState({ "cap": "nhat" });
+    const [showModalUpdateQues, setShowModalUpdateQues] = useState(false);
 
     useEffect(() => {
-        listQA();
-    }, [refresh, props.clickSave])
+        const listQA = async (id) => {
+            if (id) {
+                let res = await apiGetAllQA(id);
 
-    const listQA = async () => {
-        let res = await apiGetAllQA(props.id);
+                setDataQA(res);
+                // console.log(res)
+                if (res.EC !== 0) {
+                    toast.error(res.EM);
+                }
+            }
 
-        setDataQA(res);
-        // console.log(res)
-        if (res.EC !== 0) {
-            toast.error(res.EM);
         }
-    }
+
+        listQA(id);
+    }, [refresh, props.clickSave, id])
+
+
     const ConvertBufferToBase64 = (image) => {
         if (image) {
             let res = Buffer.from(image, 'base64').toString('utf8');
@@ -40,10 +49,15 @@ const AListQA = (props) => {
         console.log(res)
     }
 
+    const handlerUpdateQues = (val) => {
+        setQuesUpdate(val);
+        setShowModalUpdateQues(true);
+    }
+    // console.log(quesUpdate)
     return (
         <>
 
-            <Table striped bordered hover size="sm">
+            <Table striped bordered size="sm">
                 <thead>
                     <tr>
                         <th>Information</th>
@@ -53,14 +67,14 @@ const AListQA = (props) => {
                 </thead>
                 <tbody>
                     {dataQA && dataQA.data && dataQA.data.length > 0 && dataQA.data.map((val, index) => {
-                        return <tr>
+                        return <tr key={`ques${index}`}>
                             <td> <div className="list-qa">
                                 <div className="mb-3">
                                     <label className="form-label">Question: {index + 1}</label>
                                     <input
                                         type="text"
                                         className="form-control"
-                                        value={val.cont}
+                                        defaultValue={val.cont}
                                         disabled
                                     />
                                 </div>
@@ -84,15 +98,15 @@ const AListQA = (props) => {
                                         <div className='mb-3' key={`ansInAddAns ${indexAns}`}>
                                             <div className='add-ans'>
                                                 <input type="checkbox"
-                                                    checked={valAns.is_true}
-
+                                                    defaultChecked={valAns.is_true}
+                                                    disabled
                                                 />
                                                 <div className='col-8'>
                                                     <input
                                                         type="text"
                                                         className="form-control"
-                                                        value={valAns.description}
-
+                                                        defaultValue={valAns.description}
+                                                        disabled
                                                     />
                                                 </div>
 
@@ -113,6 +127,9 @@ const AListQA = (props) => {
                                     ><FaPencilAlt
                                             color={'orange'}
                                             size={'1.5em'}
+                                            onClick={() => {
+                                                handlerUpdateQues(val)
+                                            }}
                                         /></button>
                                     <button className='btn btn-info mx-1'
 
@@ -132,7 +149,12 @@ const AListQA = (props) => {
                 </tbody>
             </Table>
 
-
+            <AModalUpdateQA
+                quesUpdate={quesUpdate}
+                setQuesUpdate={setQuesUpdate}
+                show={showModalUpdateQues}
+                setShow={setShowModalUpdateQues}
+            />
 
 
 

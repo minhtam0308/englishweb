@@ -225,12 +225,12 @@ const AModalAddQues = (props) => {
                                         />
                                     </div>
                                     <span>
-                                        {ans && ans.length > 1 && <FaMinusSquare size={'2em'} color='red'
+                                        {ans && ans.length > 1 && <FaMinusSquare size={'2em'} color='red' cursor={`pointer`}
                                             onClick={() => {
                                                 handlerDeleteAns(val.id)
                                             }}
                                         />}
-                                        {ans && index === ans.length - 1 && <FaPlusSquare size={'2em'} color='green' onClick={handlerAddAns} />}
+                                        {ans && index === ans.length - 1 && <FaPlusSquare size={'2em'} cursor={`pointer`} color='green' onClick={handlerAddAns} />}
                                     </span>
                                 </div>
                             </div>)
