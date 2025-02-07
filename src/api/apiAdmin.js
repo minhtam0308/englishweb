@@ -72,6 +72,15 @@ const apiPostDeleteQuesById = async (id) => {
     }
 }
 
+const apiPostUpdateQuestion = async (arrDelete, ques) => {
+    try {
+        let res = await axios.post(`api/PostUpdateQuestion`, { arrDelete, ques });
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export {
     CreateLession,
     apiGetAllLession,
@@ -79,5 +88,6 @@ export {
     apiPostDeleteLessById,
     apiPostCreateQuestion,
     apiGetAllQA,
-    apiPostDeleteQuesById
+    apiPostDeleteQuesById,
+    apiPostUpdateQuestion
 }

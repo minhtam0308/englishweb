@@ -53,7 +53,8 @@ const AListQA = (props) => {
         setQuesUpdate(val);
         setShowModalUpdateQues(true);
     }
-    // console.log(quesUpdate)
+    // console.log("update", quesUpdate);
+    // console.log("data", dataQA);
     return (
         <>
 
@@ -67,59 +68,62 @@ const AListQA = (props) => {
                 </thead>
                 <tbody>
                     {dataQA && dataQA.data && dataQA.data.length > 0 && dataQA.data.map((val, index) => {
+                        // console.log(val)
                         return <tr key={`ques${index}`}>
-                            <td> <div className="list-qa">
-                                <div className="mb-3">
-                                    <label className="form-label">Question: {index + 1}</label>
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        defaultValue={val.cont}
-                                        disabled
-                                    />
-                                </div>
-                                <div className="mb-3">
+                            <td>
+
+                                <div className="list-qa">
+                                    <div className="mb-3">
+                                        <label className="form-label">Question: {index + 1}</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            value={val.cont}
+                                            disabled
+                                        />
+                                    </div>
+                                    <div className="mb-3">
 
 
 
-                                    {val.image &&
-                                        <div className='preview'>
-                                            <Zoom><img src={ConvertBufferToBase64(val.image)} alt=""></img></Zoom>
-                                        </div>
-                                    }
+                                        {val.image &&
+                                            <div className='preview'>
+                                                <Zoom><img src={ConvertBufferToBase64(val.image)} alt=""></img></Zoom>
+                                            </div>
+                                        }
 
-                                </div>
+                                    </div>
 
-                                {val.ans && val.ans.map((valAns, indexAns) => {
-                                    // console.log("val", val, "index", index) 
+                                    {val.ans && val.ans.map((valAns, indexAns) => {
+                                        // console.log("val", val, "index", index) 
 
-                                    return (
+                                        return (
 
-                                        <div className='mb-3' key={`ansInAddAns ${indexAns}`}>
-                                            <div className='add-ans'>
-                                                <input type="checkbox"
-                                                    defaultChecked={valAns.is_true}
-                                                    disabled
-                                                />
-                                                <div className='col-8'>
-                                                    <input
-                                                        type="text"
-                                                        className="form-control"
-                                                        defaultValue={valAns.description}
+                                            <div className='mb-3' key={`ansInAddAns ${indexAns}`}>
+                                                <div className='add-ans'>
+                                                    <input type="checkbox"
+                                                        checked={valAns.is_true}
                                                         disabled
                                                     />
+                                                    <div className='col-8'>
+                                                        <input
+                                                            type="text"
+                                                            className="form-control"
+                                                            value={valAns.description}
+                                                            disabled
+                                                        />
+                                                    </div>
+
                                                 </div>
+                                            </div>)
 
-                                            </div>
-                                        </div>)
+                                    })
+                                        // console.log("index ", index, "val ", val)
 
-                                })
-                                    // console.log("index ", index, "val ", val)
-
-                                }
+                                    }
 
 
-                            </div>
+                                </div>
                             </td>
                             <td className="btn-container">
                                 <div>
@@ -150,6 +154,8 @@ const AListQA = (props) => {
             </Table>
 
             <AModalUpdateQA
+                setRefresh={setRefresh}
+                refresh={refresh}
                 quesUpdate={quesUpdate}
                 setQuesUpdate={setQuesUpdate}
                 show={showModalUpdateQues}

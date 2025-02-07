@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { apiGetAllLession } from '../../api/apiAdmin';
 import { Buffer } from 'buffer';
 import Zoom from 'react-medium-image-zoom'
+import { NavLink } from 'react-router-dom';
 const HomeCenterContent = () => {
 
     const [listLess, setListLess] = useState([])
@@ -61,8 +62,13 @@ const HomeCenterContent = () => {
                                             {val.description}
                                         </div>
                                         <div className="finish-container">
-                                            <button className="btn btn-light">Chi tiet</button>
-                                            <button className="btn finish m-3">học ngay</button>
+                                            <NavLink
+                                                to={'/doingLess'}
+                                                state={{ val }}
+                                            >
+                                                <button className="btn finish m-3">học ngay</button>
+
+                                            </NavLink>
                                         </div>
                                     </div>
                                 </div>

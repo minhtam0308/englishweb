@@ -7,6 +7,7 @@ import Lession from './pages/Admin/Lession';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
+import LessionDoing from './components/User/LessionDoing';
 
 function App() {
   return (
@@ -20,6 +21,9 @@ function App() {
 
         </Route>
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />}>
+
+        </Route>
+        <Route path='/doingLess' element={<LessionDoing />}>
 
         </Route>
       </Routes>

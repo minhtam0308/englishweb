@@ -9,11 +9,12 @@ import { useEffect, useState } from 'react';
 import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import { apiPostUpdateQuestion } from '../../api/apiAdmin';
 
 
 const AModalUpdateQA = (props) => {
 
-    const { quesUpdate, show, setShow, setQuesUpdate } = props;
+    const { quesUpdate, show, setShow, setQuesUpdate, setRefresh, refresh } = props;
     //khong thay doi useState khi useSate cha thay doi
     // const [ques, setQues] = useState({})
 
@@ -25,7 +26,9 @@ const AModalUpdateQA = (props) => {
 
     useEffect(() => {
         setArrDelete([]);
-
+        let temp = structuredClone(quesUpdate);
+        temp.image = ConvertBufferToBase64(quesUpdate.image);
+        setQuesUpdate(temp);
     }, [show])
 
 
@@ -149,7 +152,7 @@ const AModalUpdateQA = (props) => {
 
     }
 
-    const handleSaveUpdate = () => {
+    const handleSaveUpdate = async () => {
 
         if (quesUpdate.cont === "") {
             validateQues();
@@ -159,7 +162,7 @@ const AModalUpdateQA = (props) => {
             return val.description === "";
         })
         let ansNoCorr = quesUpdate.ans.findIndex((val) => {
-            return val.is_true === true;
+            return val.is_true === 1 || val.is_true === true
         })
 
         if (ansEmpty !== -1) {
@@ -171,6 +174,20 @@ const AModalUpdateQA = (props) => {
             return;
         }
 
+
+        // console.log("ques", quesUpdate);
+        // console.log("arrr", arrDelete);
+
+        let res = await apiPostUpdateQuestion(arrDelete, quesUpdate);
+        // console.log(res);
+
+        if (res.EC === 0) {
+            toast.success(res.EM);
+            setRefresh(!refresh);
+            handleCloseModal();
+        } else {
+            toast.error(res.EM);
+        }
 
     }
 
