@@ -42,37 +42,37 @@ const HomeCenterContent = () => {
 
                     {listLess && listLess.length > 0 && listLess.map((val, index) => {
                         return (
-                            <>
-                                <div className={`excard ${index}`}>
-                                    <div className="image">
-                                        {val.image ?
-                                            <Zoom>
-                                                <img src={val.image} alt="" />
-                                            </Zoom>
 
-                                            :
-                                            'do not hane any images'
-                                        }
+                            <div key={`lessionListkey${index}`} className={`excard ${index}`}>
+                                <div className="image">
+                                    {val.image ?
+                                        <Zoom>
+                                            <img src={val.image} alt="" />
+                                        </Zoom>
+
+                                        :
+                                        'do not hane any images'
+                                    }
+                                </div>
+                                <div className="content-card">
+                                    <div className="title">
+                                        {val.title}
                                     </div>
-                                    <div className="content-card">
-                                        <div className="title">
-                                            {val.title}
-                                        </div>
-                                        <div className="description">
-                                            {val.description}
-                                        </div>
-                                        <div className="finish-container">
-                                            <NavLink
-                                                to={'/doingLess'}
-                                                state={{ val }}
-                                            >
-                                                <button className="btn finish m-3">học ngay</button>
+                                    <div className="description">
+                                        {val.description}
+                                    </div>
+                                    <div className="finish-container">
+                                        <NavLink
+                                            to={'/doingLess'}
+                                            state={{ val }}
+                                        >
+                                            <button className="btn finish m-3">học ngay</button>
 
-                                            </NavLink>
-                                        </div>
+                                        </NavLink>
                                     </div>
                                 </div>
-                            </>
+                            </div>
+
                         )
                     })}
 
