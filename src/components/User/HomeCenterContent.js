@@ -11,7 +11,10 @@ const HomeCenterContent = () => {
     useEffect(() => {
         const getAllLession = async () => {
             const res = await apiGetAllLession();
-            setListLess(ConvertBufferToBase64(res.data));
+            if (res && res.EC === 0) {
+                setListLess(ConvertBufferToBase64(res.data));
+
+            }
 
         }
         getAllLession();
@@ -69,6 +72,13 @@ const HomeCenterContent = () => {
                                             <button className="btn finish m-3">học ngay</button>
 
                                         </NavLink>
+                                        {/* <NavLink
+                                            to={'/'}
+                                            state={{ val }}
+                                        >
+                                            <button className="btn btn-info m-3">Chi tiết</button>
+
+                                        </NavLink> */}
                                     </div>
                                 </div>
                             </div>

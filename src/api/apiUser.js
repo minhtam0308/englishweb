@@ -32,8 +32,21 @@ const GetMaxTimeLessById = async (id) => {
         console.log(e);
     }
 }
+
+const GetFindCorrectAns = async (idQues) => {
+    try {
+        if (idQues) {
+            let res = await axios.get(`api/GetFindCorrAns?idQues=${idQues}`);
+            return res;
+        }
+
+    } catch (e) {
+        console.log(e);
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
-    GetMaxTimeLessById
+    GetMaxTimeLessById,
+    GetFindCorrectAns
 }

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { GetAllQAByUser, GetMaxTimeLessById, PostCheckCorrAns } from "../../api/apiUser";
+import { GetAllQAByUser, GetFindCorrectAns, GetMaxTimeLessById, PostCheckCorrAns } from "../../api/apiUser";
 import { Buffer } from 'buffer';
 import Zoom from 'react-medium-image-zoom';
 import { TiTick } from "react-icons/ti";
 import { FaXmark } from "react-icons/fa6";
+import LessionDoingResult from "./LessionDoingResult";
 
 
 
@@ -21,6 +22,9 @@ const LessionDoing = (props) => {
 
     const [checkCorrAns, setCheckCorrAns] = useState(null);
     const [timeLess, setTimeLess] = useState(null);
+
+    const [corr, setCorr] = useState(0);
+    const [choseQues, setChoseQues] = useState([]);
 
     useEffect(() => {
         getQA();
@@ -47,22 +51,55 @@ const LessionDoing = (props) => {
         return image;
     }
 
+
     const handleChooseAns = async (idAns, idQues, idLess, time) => {
         let res = await PostCheckCorrAns(idAns, idQues, idLess, time);
-        console.log(res)
-        if (res.EC === 0 && checkCorrAns === null) {
+        let resCorrAns = await GetFindCorrectAns(idQues);
+        // console.log(res)
+        if (res.EC === 0 && resCorrAns.EC === 0 && checkCorrAns === null) {
             if (res.EM === "Correct") {
                 setCheckCorrAns({
                     id: idAns,
                     is_true: true
                 });
+                setCorr(corr + 1);
+                let temp = [...choseQues];
+                temp.push({
+                    choseQues: dataQA[pageQues],
+                    corrAns: resCorrAns.EM,
+                    checkCorrAns: {
+                        id: idAns,
+                        is_true: true
+                    }
+                })
+                setChoseQues(temp);
+
             } else {
                 setCheckCorrAns({
                     id: idAns,
                     is_true: false
                 });
+                let temp = [...choseQues];
+                temp.push({
+                    choseQues: dataQA[pageQues],
+                    corrAns: resCorrAns.EM,
+                    checkCorrAns: {
+                        id: idAns,
+                        is_true: false
+                    }
+                })
+                setChoseQues(temp);
+
             }
+            //vi o day chechCorrAns = null
+            // let temp = [...choseQues];
+            // temp.push({
+            //     choseQues: dataQA[pageQues],
+            //     corrAns: resCorrAns.EM,
+            //     checkCorrAns: checkCorrAns
+            // })
             setTimeout(() => {
+
                 setPageQues(pageQues + 1);
                 setCheckCorrAns(null);
 
@@ -71,7 +108,9 @@ const LessionDoing = (props) => {
         }
 
     }
-    // console.log(pageQues)
+    // console.log("chose", choseQues)
+
+
 
     return (
         <>
@@ -81,6 +120,7 @@ const LessionDoing = (props) => {
 
                     {dataQA && dataQA.length > pageQues &&
                         <>
+                            <h3 className="number-question">Question {pageQues + 1}: </h3>
                             <div className="question-box">
 
                                 <h3 className="text-center">
@@ -107,7 +147,7 @@ const LessionDoing = (props) => {
 
                                             }
                                         >
-                                            <div className="answer-option" style={{ backgroundColor: `${color[index % 4]}` }}>
+                                            <div className="answer-option" style={{ backgroundColor: `${color[(index + pageQues) % 4]}` }}>
                                                 {checkCorrAns && val.id === checkCorrAns.id && (checkCorrAns.is_true
                                                     ?
                                                     <div className="corr">
@@ -136,6 +176,17 @@ const LessionDoing = (props) => {
 
                             </div>
                         </>
+                    }
+                    {dataQA && pageQues === dataQA.length &&
+
+
+                        <LessionDoingResult
+                            choseQues={choseQues}
+                            color={color}
+                            ConvertBufferToBase64={ConvertBufferToBase64}
+                            corr={corr}
+                        />
+
                     }
 
 
