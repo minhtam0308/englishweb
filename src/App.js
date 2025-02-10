@@ -8,6 +8,7 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
 import LessionDoing from './components/User/LessionDoing';
+import RegisterUser from './components/User/RegisterUser';
 
 function App() {
   return (
@@ -16,16 +17,15 @@ function App() {
         <Route path='/' element={<Home />}>
           <Route path='/' element={<HomeCenterContent />} />
           <Route path='/chat' element={<Chat />} />
-        </Route>
-        <Route path='/admin' element={<Lession />}>
+
 
         </Route>
-        <Route path='/admin/CRUDQuestion' element={<AAddQAndA />}>
+        <Route path='/registerUser' element={<RegisterUser />} />
+        <Route path='/admin' element={<Lession />} />
 
-        </Route>
-        <Route path='/doingLess' element={<LessionDoing />}>
+        <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
 
-        </Route>
+        <Route path='/doingLess' element={<LessionDoing />} />
       </Routes>
       <ToastContainer
         position="top-right"

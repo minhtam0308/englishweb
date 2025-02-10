@@ -2,12 +2,13 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/home.css';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import HomeHeader from '../../components/User/HomeHeader';
 import HomeLeftContent from '../../components/User/HomeLeftContent';
 import HomeRightContent from '../../components/User/HomeRightContent';
-import { Outlet } from 'react-router-dom';
+import RModalLoginUser from '../../components/User/RModalLoginUser';
+
+import { NavLink, Outlet } from 'react-router-dom';
 
 
 const Home = () => {
@@ -15,6 +16,8 @@ const Home = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
 
     return (
         <>
@@ -29,9 +32,23 @@ const Home = () => {
                     <div className="content-left-container">
                         <HomeLeftContent />
                     </div>
-                    <div className="content-center-container">
-                        <Outlet />
-                    </div>
+                    {localStorage.user
+                        ?
+                        <div className="content-center-container">
+                            <Outlet />
+                        </div>
+                        :
+                        <div className="content-center-container">
+                            <div className='center-content text-center'>
+                                <NavLink
+                                    to={'/registerUSer'}
+                                >
+                                    <Button className='btn btn-secondary'>Register</Button>
+                                </NavLink> </div>
+
+                        </div>
+
+                    }
                     <div className="content-right-cotainer">
 
                         <HomeRightContent />
@@ -39,34 +56,11 @@ const Home = () => {
                 </div>
             </div>
 
+            <RModalLoginUser
+                show={show}
+                handleClose={handleClose}
+            />
 
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>LOG IN</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="mb-3">
-                        <label className="form-label">Email address</label>
-                        <input type="email" className="form-control" placeholder="name@example.com" />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Username</label>
-                        <input type="text" className="form-control" />
-                    </div>
-                    <div className="mb-3">
-                        <label className="form-label">Password</label>
-                        <input type="password" className="form-control" />
-                    </div>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
         </>
     )
 }

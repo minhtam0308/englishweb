@@ -161,6 +161,60 @@
 }
 
 
+//register
+.register-container {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 600px;
+
+        .form-control {
+            border-radius: 10px;
+        }
+    }
+
+
+
+
+
+    .profile-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-right: 20px;
+
+        .btn-primary {
+            background-color: #6c63ff;
+            border: none;
+            border-radius: 10px;
+
+            &:hover {
+                background-color: #5a54d1;
+            }
+        }
+
+        img {
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    }
+
+}
+
 
 
 

@@ -8,6 +8,8 @@ const HomeCenterContent = () => {
 
     const [listLess, setListLess] = useState([])
 
+    localStorage.removeItem("user")
+
     useEffect(() => {
         const getAllLession = async () => {
             const res = await apiGetAllLession();
