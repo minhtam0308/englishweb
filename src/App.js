@@ -8,7 +8,6 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
 import LessionDoing from './components/User/LessionDoing';
-import RegisterUser from './components/User/RegisterUser';
 
 function App() {
   return (
@@ -20,7 +19,6 @@ function App() {
 
 
         </Route>
-        <Route path='/registerUser' element={<RegisterUser />} />
         <Route path='/admin' element={<Lession />} />
 
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />

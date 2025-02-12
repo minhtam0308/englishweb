@@ -1,14 +1,14 @@
 
 import 'bootstrap/dist/css/bootstrap.css';
 import '../../styles/home.css';
-import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import HomeHeader from '../../components/User/HomeHeader';
 import HomeLeftContent from '../../components/User/HomeLeftContent';
 import HomeRightContent from '../../components/User/HomeRightContent';
 import RModalLoginUser from '../../components/User/RModalLoginUser';
 
-import { NavLink, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import RegisterUser from '../../components/User/RegisterUser';
 
 
 const Home = () => {
@@ -27,33 +27,31 @@ const Home = () => {
                         handleShow={handleShow}
                     />
                 </div>
+                {!localStorage.user
+                    ?
 
-                <div className="content-container">
-                    <div className="content-left-container">
-                        <HomeLeftContent />
-                    </div>
-                    {localStorage.user
-                        ?
-                        <div className="content-center-container">
-                            <Outlet />
+                    <RegisterUser />
+
+                    :
+                    <>
+                        <div className="content-container">
+
+
+                            <div className="content-left-container">
+                                <HomeLeftContent />
+                            </div>
+
+                            <div className="content-center-container">
+                                <Outlet />
+                            </div>
+
+                            <div className="content-right-cotainer">
+
+                                <HomeRightContent />
+                            </div>
+
                         </div>
-                        :
-                        <div className="content-center-container">
-                            <div className='center-content text-center'>
-                                <NavLink
-                                    to={'/registerUSer'}
-                                >
-                                    <Button className='btn btn-secondary'>Register</Button>
-                                </NavLink> </div>
-
-                        </div>
-
-                    }
-                    <div className="content-right-cotainer">
-
-                        <HomeRightContent />
-                    </div>
-                </div>
+                    </>}
             </div>
 
             <RModalLoginUser

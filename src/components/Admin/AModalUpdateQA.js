@@ -3,13 +3,14 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 import Zoom from 'react-medium-image-zoom';
-import { Buffer } from 'buffer';
 import { useEffect, useState } from 'react';
 
 import { FaPlusSquare } from "react-icons/fa";
 import { FaMinusSquare } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import { apiPostUpdateQuestion } from '../../api/apiAdmin';
+import GetBase64 from '../../handlerCommon/GetBase64';
+import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 
 
 const AModalUpdateQA = (props) => {
@@ -32,13 +33,6 @@ const AModalUpdateQA = (props) => {
     }, [show])
 
 
-    const ConvertBufferToBase64 = (image) => {
-        if (image && typeof image !== 'string') {
-            let res = Buffer.from(image, 'base64').toString('utf8');
-            return res;
-        }
-        return image;
-    }
 
     const handleCloseModal = () => {
         setShow(false);
@@ -59,21 +53,10 @@ const AModalUpdateQA = (props) => {
     }
 
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => {
-                // console.log("send", reader.result) it have header data:image/png;base64;
-                resolve(reader.result)
-            }
-            reader.onerror = reject;
-        })
-    }
 
     const handlerChangeImg = async (event) => {
         let tmp = structuredClone(quesUpdate);
-        await getBase64(event.target.files[0]).then((res) => tmp.image = res);
+        await GetBase64(event.target.files[0]).then((res) => tmp.image = res);
         setQuesUpdate(tmp);
     }
 

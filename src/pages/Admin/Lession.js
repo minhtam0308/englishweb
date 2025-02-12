@@ -7,6 +7,7 @@ import { FaFolderPlus } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import Zoom from 'react-medium-image-zoom';
 import AListLession from '../../components/Admin/AListLession';
+import GetBase64 from '../../handlerCommon/GetBase64';
 
 
 const Lession = () => {
@@ -51,22 +52,11 @@ const Lession = () => {
     }
 
 
-    // convsert to base64
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => {
-                // console.log("send", reader.result) it have header data:image/png;base64;
-                resolve(reader.result)
-            }
-            reader.onerror = reject
-        })
-    }
+
 
     const handlerSetImage = (event) => {
         if (event && event.target && event.target.files[0]) {
-            getBase64(event.target.files[0]).then((res) => setImage(res));
+            GetBase64(event.target.files[0]).then((res) => setImage(res));
         }
 
 

@@ -2,9 +2,10 @@
 import Zoom from 'react-medium-image-zoom';
 import { TiTick } from "react-icons/ti";
 import { FaXmark } from "react-icons/fa6";
+import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 const LessionDoingResult = (props) => {
 
-    const { choseQues, color, ConvertBufferToBase64, corr } = props;
+    const { choseQues, color, corr } = props;
 
     return (
         <div className="result-container">

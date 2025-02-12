@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { apiGetAllQA, apiPostDeleteQuesById } from "../../api/apiAdmin";
 import { toast } from "react-toastify";
 import Zoom from 'react-medium-image-zoom';
-import { Buffer } from 'buffer';
 import { Table } from "react-bootstrap";
 import { FaPencilAlt } from "react-icons/fa";
 import { ImBin2 } from "react-icons/im";
 import AModalUpdateQA from "./AModalUpdateQA";
+import ConvertBufferToBase64 from "../../handlerCommon/ConvertBufferToBase64";
 
 
 const AListQA = (props) => {
@@ -35,13 +35,7 @@ const AListQA = (props) => {
     }, [refresh, props.clickSave, id])
 
 
-    const ConvertBufferToBase64 = (image) => {
-        if (image) {
-            let res = Buffer.from(image, 'base64').toString('utf8');
-            return res;
-        }
 
-    }
 
     const HandlerDeleteQues = async (id) => {
         const res = await apiPostDeleteQuesById(id);

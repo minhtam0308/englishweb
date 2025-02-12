@@ -44,9 +44,19 @@ const GetFindCorrectAns = async (idQues) => {
         console.log(e);
     }
 }
+
+const PostRegisterUser = async (data) => {
+    try {
+        const res = await axios.post(`api/PostRegisterUser`, data);
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
     GetMaxTimeLessById,
-    GetFindCorrectAns
+    GetFindCorrectAns,
+    PostRegisterUser
 }

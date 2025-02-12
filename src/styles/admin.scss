@@ -164,7 +164,7 @@
 //register
 .register-container {
     background: linear-gradient(to right, #4facfe, #00f2fe);
-    height: 100vh;
+    height: calc(100vh - 69px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,7 +177,15 @@
         .form-control {
             border-radius: 10px;
         }
+
+        .right {
+            float: right;
+        }
+
+
+
     }
+
 
 
 
@@ -206,15 +214,30 @@
         img {
             border-radius: 50%;
             margin-bottom: 10px;
+            height: 100px;
+            width: 100px;
+            object-fit: contain;
+            border: solid 2px black;
         }
 
         button {
             margin-top: 10px;
         }
+
     }
 
 }
 
+//dung nhieu
+.password_container {
+    position: relative;
+
+    .eye_showPass {
+        position: absolute;
+        right: 11px;
+        top: 35px;
+    }
+}
 
 
 

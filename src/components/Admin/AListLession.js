@@ -10,6 +10,7 @@ import Button from 'react-bootstrap/Button';
 import { toast } from 'react-toastify';
 import { CiSquareMore } from "react-icons/ci";
 import { NavLink } from 'react-router-dom';
+import GetBase64 from '../../handlerCommon/GetBase64';
 
 
 
@@ -80,22 +81,11 @@ const AListLession = (props) => {
 
     }
 
-    // convsert to base64
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => {
-                // console.log("send", reader.result) it have header data:image/png;base64;
-                resolve(reader.result)
-            }
-            reader.onerror = reject
-        })
-    }
+
 
     const handlerSetImage = (event) => {
         if (event && event.target && event.target.files[0]) {
-            getBase64(event.target.files[0]).then((res) => setImage(res));
+            GetBase64(event.target.files[0]).then((res) => setImage(res));
         }
 
 

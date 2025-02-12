@@ -9,6 +9,7 @@ import { useState } from 'react';
 import Zoom from 'react-medium-image-zoom';
 import { toast } from 'react-toastify';
 import { apiPostCreateQuestion } from '../../api/apiAdmin';
+import GetBase64 from '../../handlerCommon/GetBase64';
 
 const AModalAddQues = (props) => {
 
@@ -32,22 +33,15 @@ const AModalAddQues = (props) => {
         setQues(tmp)
     }
 
-    const getBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => {
-                // console.log("send", reader.result) it have header data:image/png;base64;
-                resolve(reader.result)
-            }
-            reader.onerror = reject
-        })
-    }
+
 
     const handlerChangeImg = async (event) => {
-        let tmp = structuredClone(ques);
-        await getBase64(event.target.files[0]).then((res) => tmp.image = res);
-        setQues(tmp);
+        if (event.target.files[0]) {
+            let tmp = structuredClone(ques);
+            await GetBase64(event.target.files[0]).then((res) => tmp.image = res);
+            setQues(tmp);
+        }
+
     }
     // console.log(ques)
 

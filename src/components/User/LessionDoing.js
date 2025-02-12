@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { GetAllQAByUser, GetFindCorrectAns, GetMaxTimeLessById, PostCheckCorrAns } from "../../api/apiUser";
-import { Buffer } from 'buffer';
 import Zoom from 'react-medium-image-zoom';
 import { TiTick } from "react-icons/ti";
 import { FaXmark } from "react-icons/fa6";
 import LessionDoingResult from "./LessionDoingResult";
+import ConvertBufferToBase64 from "../../handlerCommon/ConvertBufferToBase64";
 
 
 
@@ -43,13 +43,7 @@ const LessionDoing = (props) => {
         }
 
     }
-    const ConvertBufferToBase64 = (image) => {
-        if (image && typeof image !== 'string') {
-            let res = Buffer.from(image, 'base64').toString('utf8');
-            return res;
-        }
-        return image;
-    }
+
 
 
     const handleChooseAns = async (idAns, idQues, idLess, time) => {
