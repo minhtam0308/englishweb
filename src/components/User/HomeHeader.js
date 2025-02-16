@@ -5,9 +5,34 @@ import { GrAssistListening } from "react-icons/gr";
 import { IoChatboxEllipsesSharp } from "react-icons/io5";
 import avarta from '../../assets/avatar.png';
 import { NavLink } from 'react-router-dom';
+import { useContext } from 'react';
+import { ContextAuth } from '../../Context/Context';
+import { useState } from 'react';
+
+import RModalLoginUser from './RModalLoginUser';
+import ModalLogOut from './ModalLogOut';
+import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 
 
-const HomeHeader = (props) => {
+
+const HomeHeader = () => {
+    const Auth = useContext(ContextAuth);
+
+    const [showLogin, setShowLogin] = useState(false);
+    const handleCloseLogin = () => setShowLogin(false);
+    const handleShowLogin = () => setShowLogin(true);
+
+    const [showLogOut, setShowOut] = useState(false);
+    const handleCloseOut = () => setShowOut(false);
+    const handleShowOut = () => setShowOut(true);
+
+    const handleClickImageUser = () => {
+        if (!Auth.auth.auth) {
+            handleShowLogin();
+        } else {
+            handleShowOut()
+        }
+    }
 
 
     return (
@@ -21,31 +46,61 @@ const HomeHeader = (props) => {
                 </div>
             </div>
             <div className="navbar-container">
-                <NavLink to="">
-                    <div className="left-navbar-container">
-                        <span><GrAssistListening /></span>
-                        <div className='name-nav'>IELTS Listening</div>
-                    </div>
-                </NavLink>
-                <NavLink to="/chat">
-                    <div className="right-navbar-container">
 
-                        <IoChatboxEllipsesSharp />
-                        <div className='name-nav'>Chat</div>
-                    </div>
-                </NavLink>
+                {Auth.auth.auth ??
+                    <>
 
+                        <NavLink to="">
+                            <div className="left-navbar-container">
+                                <span><GrAssistListening /></span>
+                                <div className='name-nav'>IELTS Listening</div>
+                            </div>
+                        </NavLink>
+                        <NavLink to="/chat">
+                            <div className="right-navbar-container">
+
+                                <IoChatboxEllipsesSharp />
+                                <div className='name-nav'>Chat</div>
+                            </div>
+                        </NavLink>
+                    </>
+                }
             </div>
             <div className="user-container">
-                <div className="information-user" onClick={props.handleShow}>
-                    <div className="name-user">
-                        GUEST
-                    </div>
+                <div className="information-user" onClick={() => {
+                    handleClickImageUser();
+                }}>
+
+                    {Auth.auth.auth === false ?
+                        <div className="name-user">
+                            LOGIN
+                        </div>
+                        :
+                        <div className="name-user">
+                            {Auth.auth.user.userName}
+                        </div>
+                    }
+
                     <div className="avarta-user">
-                        <img src={avarta} alt="Avarta" />
+                        {!Auth.auth.user.image ?
+                            <img src={avarta} alt="Avarta" />
+                            :
+                            <img src={ConvertBufferToBase64(Auth.auth.user.image)} alt="Avarta" />
+
+                        }
                     </div>
                 </div>
             </div>
+
+            <RModalLoginUser
+                show={showLogin}
+                handleClose={handleCloseLogin}
+            />
+
+            <ModalLogOut
+                show={showLogOut}
+                handleClose={handleCloseOut}
+            />
         </>
     )
 }

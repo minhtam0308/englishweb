@@ -53,10 +53,32 @@ const PostRegisterUser = async (data) => {
         console.log(e);
     }
 }
+
+const PostLoginUser = async (data) => {
+    try {
+        const res = await axios.post(`api/PostLoginUser`, data);
+        return res;
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+const GetRefreshPage = async () => {
+    try {
+        let res = await axios.get('api/GetRefreshLogin');
+        return res
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
     GetMaxTimeLessById,
     GetFindCorrectAns,
-    PostRegisterUser
+    PostRegisterUser,
+    PostLoginUser,
+    GetRefreshPage
 }

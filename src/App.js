@@ -1,5 +1,5 @@
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Home from './pages/User/home';
 import HomeCenterContent from './components/User/HomeCenterContent';
 import Chat from './components/User/Chat';
@@ -8,23 +8,46 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
 import LessionDoing from './components/User/LessionDoing';
+import RegisterUser from './components/User/RegisterUser';
+import { useContext, useEffect } from 'react';
+import { ContextAuth } from './Context/Context';
+import { GetRefreshPage } from './api/apiUser';
+
+
 
 function App() {
+  const Auth = useContext(ContextAuth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const refreshAuth = async () => {
+      let res = await GetRefreshPage();
+      if (res.EC !== 0) {
+        navigate('/registerUSer');
+      } else {
+        Auth.setAuth({
+          auth: true,
+          user: res.user
+        });
+
+      }
+
+    }
+
+    refreshAuth();
+  }, [])
   return (
     <>
       <Routes>
         <Route path='/' element={<Home />}>
           <Route path='/' element={<HomeCenterContent />} />
           <Route path='/chat' element={<Chat />} />
-
-
         </Route>
         <Route path='/admin' element={<Lession />} />
-
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
-
         <Route path='/doingLess' element={<LessionDoing />} />
+        <Route path='/registerUSer' element={< RegisterUser />} />
       </Routes>
+
       <ToastContainer
         position="top-right"
         autoClose={3000}

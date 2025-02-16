@@ -240,6 +240,35 @@
 }
 
 
+.logOut-container {
+    position: relative;
+
+    .accept-logOut {
+        background-color: white;
+        position: absolute;
+        left: 85vw;
+        padding: 10px;
+        width: 100px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px 2px #b5b1b1;
+        color: red;
+        cursor: pointer;
+
+        &:hover {
+            background-color: yellow;
+        }
+    }
+}
+
+
+.closelogOut {
+    position: absolute;
+    height: 100vh;
+    width: 98vw;
+
+}
+
+
 
 
 //effect appears react

@@ -5,12 +5,17 @@ import { useState } from 'react';
 import { RiEyeCloseLine } from "react-icons/ri";
 import { RiEyeLine } from "react-icons/ri";
 import { toast } from 'react-toastify';
+import { PostLoginUser } from '../../api/apiUser';
+import { useNavigate } from 'react-router-dom';
 
 const ModalLoginUser = (props) => {
+
+
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const navigate = useNavigate()
 
 
     const { show, handleClose } = props;
@@ -24,11 +29,23 @@ const ModalLoginUser = (props) => {
         setPassword(event.target.value);
     }
 
-    const handleLogIn = () => {
+    const handleLogIn = async () => {
         if (email === "" || password === "") {
             toast.warning("Write Your Email And Password");
             return;
         }
+        const res = await PostLoginUser({
+            email: email,
+            password: password
+        })
+        if (res?.EC === 0) {
+            localStorage.setItem("token", res.token)
+            navigate('/');
+            handleClose();
+            window.location.reload();
+
+        }
+
     }
 
     return (
