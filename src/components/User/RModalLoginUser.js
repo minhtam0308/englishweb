@@ -44,6 +44,8 @@ const ModalLoginUser = (props) => {
             handleClose();
             window.location.reload();
 
+        } else {
+            toast.error(res?.EM);
         }
 
     }

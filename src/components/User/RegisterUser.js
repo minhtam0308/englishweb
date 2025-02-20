@@ -4,11 +4,9 @@ import logo from '../../assets/mochi-logo.webp';
 import GetBase64 from "../../handlerCommon/GetBase64";
 import { RiEyeCloseLine } from "react-icons/ri";
 import { RiEyeLine } from "react-icons/ri";
-import { PostRegisterUser } from "../../api/apiUser";
-import { toast } from "react-toastify";
 import RModalLoginUser from './RModalLoginUser';
-
 import HomeHeader from "./HomeHeader";
+import ModalVerifyEmail from "./ModalVerifyEmail";
 
 
 
@@ -27,9 +25,14 @@ const RegisterUser = () => {
     const [image, setImage] = useState(null);
 
     const [showLogin, setShowLogin] = useState(false);
-
     const handleCloseLogin = () => setShowLogin(false);
     const handleShowLogin = () => setShowLogin(true);
+
+    const [showModalVerify, setShowModalVerify] = useState(false);
+    const handleCloseVerify = () => setShowModalVerify(false);
+    const handleShowVerify = () => setShowModalVerify(true);
+
+    const [dataRegister, setDataRegister] = useState({});
 
     const handleChangUserName = (event) => {
         if (event.target.value !== "") {
@@ -68,6 +71,7 @@ const RegisterUser = () => {
     };
 
     const handleSubmit = async () => {
+
         if (userName === '') {
             setUserNameNull(true);
             return;
@@ -84,25 +88,16 @@ const RegisterUser = () => {
             setPasswordAgainInvalid(true);
             return;
         }
-        let dataRegister = ({
+        setDataRegister({
             userName: userName,
             role: "USER",
             email: email,
             password: password,
             image: image
         });
-        const res = await PostRegisterUser(dataRegister);
-        if (res.EC === 0) {
-            toast.success(res.EM);
-        } else if (res.EC === 1) {
-            setEmailWrong(true);
-            toast.warning(res.EM);
-        } else if (res.EC === 2) {
-            toast.warning(res.EM);
-        } else {
-            toast.error(res.EM);
-        }
-        console.log(res);
+        handleShowVerify();
+        return;
+
 
     }
     // console.log(image)
@@ -239,6 +234,13 @@ const RegisterUser = () => {
             <RModalLoginUser
                 show={showLogin}
                 handleClose={handleCloseLogin}
+            />
+
+            <ModalVerifyEmail
+                show={showModalVerify}
+                handleClose={handleCloseVerify}
+                dataRegister={dataRegister}
+                setDataRegister={setDataRegister}
             />
         </>
     )

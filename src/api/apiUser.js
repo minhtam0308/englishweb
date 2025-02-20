@@ -73,6 +73,24 @@ const GetRefreshPage = async () => {
     }
 }
 
+const PostSendEmailVerify = async (email) => {
+    try {
+        let res = await axios.post('api/PostSendEmail', { email: email });
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const PutUpdateVerifyEmail = async (token_verify, idtk) => {
+    try {
+        let res = await axios.put('api/PutUpdateVerify', { token_verify, idtk });
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -80,5 +98,7 @@ export {
     GetFindCorrectAns,
     PostRegisterUser,
     PostLoginUser,
-    GetRefreshPage
+    GetRefreshPage,
+    PostSendEmailVerify,
+    PutUpdateVerifyEmail
 }

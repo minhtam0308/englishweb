@@ -34,7 +34,6 @@ const HomeHeader = () => {
         }
     }
 
-
     return (
         <>
 
@@ -47,7 +46,7 @@ const HomeHeader = () => {
             </div>
             <div className="navbar-container">
 
-                {Auth.auth.auth ??
+                {Auth.auth.auth &&
                     <>
 
                         <NavLink to="">

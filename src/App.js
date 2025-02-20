@@ -1,5 +1,5 @@
 
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/User/home';
 import HomeCenterContent from './components/User/HomeCenterContent';
 import Chat from './components/User/Chat';
@@ -12,16 +12,23 @@ import RegisterUser from './components/User/RegisterUser';
 import { useContext, useEffect } from 'react';
 import { ContextAuth } from './Context/Context';
 import { GetRefreshPage } from './api/apiUser';
+import VerifyPage from './components/User/VerifyPage';
 
 
 
 function App() {
   const Auth = useContext(ContextAuth);
   const navigate = useNavigate();
+  const location = useLocation();
+  // console.log(location.pathname);
   useEffect(() => {
     const refreshAuth = async () => {
       let res = await GetRefreshPage();
-      if (res.EC !== 0) {
+      // console.log(res)
+      if (location.pathname === '/verify') {
+        return;
+      }
+      if (res?.EC !== 0) {
         navigate('/registerUSer');
       } else {
         Auth.setAuth({
@@ -46,6 +53,8 @@ function App() {
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
         <Route path='/doingLess' element={<LessionDoing />} />
         <Route path='/registerUSer' element={< RegisterUser />} />
+        <Route path='/verify' element={< VerifyPage />} />
+
       </Routes>
 
       <ToastContainer
