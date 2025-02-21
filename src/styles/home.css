@@ -88,7 +88,7 @@
 
 .center-content {
     padding: 15px;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     width: 55vw;
     margin: auto;
     height: auto;
@@ -96,7 +96,6 @@
 
 .right-content {
     position: fixed;
-    right: 0;
     margin: 10px;
 }
 

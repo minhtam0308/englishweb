@@ -28,7 +28,7 @@ const Home = () => {
                         <Outlet />
                     </div>
 
-                    <div className="content-right-cotainer">
+                    <div className="content-right-cotainer px-5">
 
                         <HomeRightContent />
                     </div>

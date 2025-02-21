@@ -241,18 +241,19 @@
 
 
 .logOut-container {
-    position: relative;
+    position: absolute;
 
     .accept-logOut {
         background-color: white;
-        position: absolute;
-        left: 85vw;
+        position: relative;
+        left: 80vw;
         padding: 10px;
         width: 100px;
         border-radius: 10px;
         box-shadow: 2px 2px 2px 2px #b5b1b1;
         color: red;
         cursor: pointer;
+        top: 60px;
 
         &:hover {
             background-color: yellow;
@@ -269,7 +270,53 @@
 }
 
 
+.user-container {
+    display: flex;
 
+    .setting {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.rotate30deg {
+    rotate: 40deg;
+}
+
+.closeSetting {
+    position: absolute;
+    height: 100vh;
+    width: 98vw;
+
+}
+
+.setting-container {
+    position: absolute;
+
+
+    .accept-setting {
+        background-color: white;
+        position: relative;
+        top: 60px;
+
+        left: 85vw;
+        padding: 10px;
+        width: 150px;
+        border-radius: 10px;
+        box-shadow: 2px 2px 2px 2px #b5b1b1;
+        color: red;
+        cursor: pointer;
+
+        &:hover {
+            background-color: yellow;
+        }
+    }
+}
+
+.notClick {
+    opacity: 0.2;
+    cursor: auto !important;
+}
 
 //effect appears react
 // .messageout-enter {

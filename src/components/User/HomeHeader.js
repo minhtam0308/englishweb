@@ -13,6 +13,10 @@ import RModalLoginUser from './RModalLoginUser';
 import ModalLogOut from './ModalLogOut';
 import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 
+import { CiSettings } from "react-icons/ci";
+import ModalChangePass from './ModalChangePass';
+
+
 
 
 const HomeHeader = () => {
@@ -25,6 +29,10 @@ const HomeHeader = () => {
     const [showLogOut, setShowOut] = useState(false);
     const handleCloseOut = () => setShowOut(false);
     const handleShowOut = () => setShowOut(true);
+
+    const [showSetting, setShowSetting] = useState(false);
+    const handleCloseSetting = () => setShowSetting(false);
+    const handleShowSetting = () => setShowSetting(true);
 
     const handleClickImageUser = () => {
         if (!Auth.auth.auth) {
@@ -89,6 +97,16 @@ const HomeHeader = () => {
                         }
                     </div>
                 </div>
+                {Auth.auth.auth &&
+                    <div
+                        className={`setting poiter ${showSetting && 'rotate30deg'}`}
+                        onClick={() => {
+                            handleShowSetting();
+                        }}
+                    >
+                        <CiSettings size={'2em'} />
+
+                    </div>}
             </div>
 
             <RModalLoginUser
@@ -99,6 +117,10 @@ const HomeHeader = () => {
             <ModalLogOut
                 show={showLogOut}
                 handleClose={handleCloseOut}
+            />
+            <ModalChangePass
+                showSetting={showSetting}
+                handleClose={handleCloseSetting}
             />
         </>
     )

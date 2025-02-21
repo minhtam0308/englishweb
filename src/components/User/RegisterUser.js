@@ -95,6 +95,11 @@ const RegisterUser = () => {
             password: password,
             image: image
         });
+        setUserName('');
+        setEmail('');
+        setImage(null);
+        setPassword('');
+        setPasswordAgain('');
         handleShowVerify();
         return;
 

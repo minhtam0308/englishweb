@@ -1,14 +1,12 @@
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { apiGetAllLession } from '../../api/apiAdmin';
 import { Buffer } from 'buffer';
 import Zoom from 'react-medium-image-zoom'
 import { NavLink } from 'react-router-dom';
-import { ContextAuth } from '../../Context/Context';
 const HomeCenterContent = () => {
 
     const [listLess, setListLess] = useState([])
-    const Auth = useContext(ContextAuth);
 
 
     useEffect(() => {
@@ -21,9 +19,8 @@ const HomeCenterContent = () => {
             }
 
         }
-        if (Auth.auth.auth === true) {
-            getAllLession();
-        }
+        getAllLession();
+
     }, [])
 
 

@@ -91,6 +91,14 @@ const PutUpdateVerifyEmail = async (token_verify, idtk) => {
     }
 }
 
+const PutChangePassword = async (oldPass, newPass) => {
+    try {
+        let res = await axios.put('api/PutChangePass', { oldPass, newPass });
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -100,5 +108,6 @@ export {
     PostLoginUser,
     GetRefreshPage,
     PostSendEmailVerify,
-    PutUpdateVerifyEmail
+    PutUpdateVerifyEmail,
+    PutChangePassword
 }

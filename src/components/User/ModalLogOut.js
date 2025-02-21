@@ -11,7 +11,7 @@ const ModalLogOut = (props) => {
 
     const handleClickLogOut = () => {
         setShowModalLogOut(true);
-
+        handleClose();
     }
 
     const handleAcceptLogOut = () => {
