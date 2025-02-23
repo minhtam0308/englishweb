@@ -3,7 +3,7 @@ import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/User/home';
 import HomeCenterContent from './components/User/HomeCenterContent';
 import Chat from './components/User/Chat';
-import Lession from './pages/Admin/Lession';
+import Lession from './components/Admin/Lession';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
@@ -13,6 +13,7 @@ import { useContext, useEffect } from 'react';
 import { ContextAuth } from './Context/Context';
 import { GetRefreshPage } from './api/apiUser';
 import VerifyPage from './components/User/VerifyPage';
+import HomeAdmin from './pages/Admin/HomeAdmin';
 
 
 
@@ -42,6 +43,7 @@ function App() {
 
     refreshAuth();
   }, [])
+  // console.log(Auth.auth.user)
   return (
     <>
       <Routes>
@@ -49,7 +51,11 @@ function App() {
           <Route path='/' element={<HomeCenterContent />} />
           <Route path='/chat' element={<Chat />} />
         </Route>
-        <Route path='/admin' element={<Lession />} />
+        {Auth.auth.user.role !== 'USER' &&
+          <Route path='/admin' element={<HomeAdmin />} >
+            <Route index element={<Lession />} />
+
+          </Route>}
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
         <Route path='/doingLess' element={<LessionDoing />} />
         <Route path='/registerUSer' element={< RegisterUser />} />

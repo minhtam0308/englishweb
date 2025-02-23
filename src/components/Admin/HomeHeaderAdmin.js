@@ -7,24 +7,21 @@ import { useContext } from 'react';
 import { ContextAuth } from '../../Context/Context';
 import { useState } from 'react';
 
-import RModalLoginUser from './RModalLoginUser';
-import ModalLogOut from './ModalLogOut';
 import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 
 import { CiSettings } from "react-icons/ci";
 import { FaBookOpen } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
-import ModalChangePass from './ModalChangePass';
+import ModalLogOut from '../User/ModalLogOut';
+import ModalChangePass from '../User/ModalChangePass';
 
 
 
 
-const HomeHeader = () => {
+const HomeHeaderAdmin = () => {
     const Auth = useContext(ContextAuth);
 
-    const [showLogin, setShowLogin] = useState(false);
-    const handleCloseLogin = () => setShowLogin(false);
-    const handleShowLogin = () => setShowLogin(true);
+
 
     const [showLogOut, setShowOut] = useState(false);
     const handleCloseOut = () => setShowOut(false);
@@ -35,11 +32,9 @@ const HomeHeader = () => {
     const handleShowSetting = () => setShowSetting(true);
 
     const handleClickImageUser = () => {
-        if (!Auth.auth.auth) {
-            handleShowLogin();
-        } else {
-            handleShowOut()
-        }
+
+        handleShowOut()
+
     }
 
     return (
@@ -54,38 +49,31 @@ const HomeHeader = () => {
             </div>
             <div className="navbar-container">
 
-                {Auth.auth.auth &&
-                    <>
 
-                        <NavLink to="/">
-                            <div className="left-navbar-container">
-                                <span><FaBookOpen /></span>
-                                <div className='name-nav'>Lession</div>
-                            </div>
-                        </NavLink>
-                        <NavLink to="/chat">
-                            <div className="right-navbar-container">
-                                <MdDashboard />
-                                <div className='name-nav'>Dashboard</div>
-                            </div>
-                        </NavLink>
-                    </>
-                }
+
+                <NavLink to="/admin">
+                    <div className="left-navbar-container">
+                        <span><FaBookOpen /></span>
+                        <div className='name-nav'>Lession</div>
+                    </div>
+                </NavLink>
+                <NavLink to="/">
+                    <div className="right-navbar-container">
+                        <MdDashboard />
+                        <div className='name-nav'>Dashboard</div>
+                    </div>
+                </NavLink>
+
             </div>
             <div className="user-container">
                 <div className="information-user" onClick={() => {
                     handleClickImageUser();
                 }}>
 
-                    {Auth.auth.auth === false ?
-                        <div className="name-user">
-                            LOGIN
-                        </div>
-                        :
-                        <div className="name-user">
-                            {Auth.auth.user.userName}
-                        </div>
-                    }
+
+                    <div className="name-user">
+                        {Auth.auth.user.userName}
+                    </div>
 
                     <div className="avarta-user">
                         {!Auth.auth.user.image ?
@@ -107,12 +95,6 @@ const HomeHeader = () => {
 
                     </div>}
             </div>
-
-            <RModalLoginUser
-                show={showLogin}
-                handleClose={handleCloseLogin}
-            />
-
             <ModalLogOut
                 show={showLogOut}
                 handleClose={handleCloseOut}
@@ -125,4 +107,4 @@ const HomeHeader = () => {
     )
 }
 
-export default HomeHeader;
+export default HomeHeaderAdmin;

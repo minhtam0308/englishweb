@@ -6,14 +6,14 @@ import { CreateLession } from '../../api/apiAdmin';
 import { FaFolderPlus } from "react-icons/fa6";
 import { toast } from 'react-toastify';
 import Zoom from 'react-medium-image-zoom';
-import AListLession from '../../components/Admin/AListLession';
+import AListLession from './AListLession';
 import GetBase64 from '../../handlerCommon/GetBase64';
 
 
 const Lession = () => {
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState('');
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState(null);
     const [description, setDescription] = useState('');
     const [level, setLevel] = useState('0');
     const [reset, setReset] = useState(false);
@@ -21,7 +21,7 @@ const Lession = () => {
     const handleClose = () => {
         setShow(false);
         setTitle("");
-        setImage("");
+        setImage(null);
         setDescription("");
         setLevel('0');
 

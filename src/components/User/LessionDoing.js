@@ -14,7 +14,7 @@ const LessionDoing = (props) => {
     const color = ["#1e73be", "#2ca8a4", "#f4b400", "#e94b3c"];
 
     let location = useLocation();
-    let lession = location.state.val;
+    let lession = location.state.less;
     // console.log(lession);
 
     const [pageQues, setPageQues] = useState(0);

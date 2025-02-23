@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Buffer } from 'buffer';
-import { apiGetAllLession, apiPostDeleteLessById, apiPostUpdateLessById } from '../../api/apiAdmin';
+import { apiGetAllLessionByTeach, apiPostDeleteLessById, apiPostUpdateLessById } from '../../api/apiAdmin';
 import Zoom from 'react-medium-image-zoom';
 import { FaPencilAlt } from "react-icons/fa";
 import { ImBin2 } from "react-icons/im";
@@ -36,7 +36,7 @@ const AListLession = (props) => {
     useEffect(() => {
         //fix React Hook useEffect has a missing dependency: 'getListLession'. Either include it or remove the dependency array
         const getListLession = async () => {
-            const res = await apiGetAllLession();
+            const res = await apiGetAllLessionByTeach();
 
             if (res) {
                 setListLession(ConvertBufferToBase64(res.data));
@@ -50,7 +50,7 @@ const AListLession = (props) => {
     // const base64Data = Buffer.from(bufferDataGoesHere).toString("base64"); sai sai sai
     // Buffer.from(base64encoded, 'base64').toString('utf8');
     const ConvertBufferToBase64 = (listLess) => {
-        if (listLess.length > 0) {
+        if (listLess?.length > 0) {
             let res = listLess.map((value, index) => {
                 if (value.image) {
                     value.image = Buffer.from(value.image, 'base64').toString('utf8');

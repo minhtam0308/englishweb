@@ -10,9 +10,20 @@ const CreateLession = async (data) => {
 
 }
 
+//user
 const apiGetAllLession = async () => {
     try {
         const res = await axios.get('api/getAllLession');
+        return res;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+//teacher
+const apiGetAllLessionByTeach = async () => {
+    try {
+        const res = await axios.get('api/GetAllLessionTeach');
         return res;
     } catch (e) {
         console.log(e);
@@ -89,5 +100,6 @@ export {
     apiPostCreateQuestion,
     apiGetAllQA,
     apiPostDeleteQuesById,
-    apiPostUpdateQuestion
+    apiPostUpdateQuestion,
+    apiGetAllLessionByTeach
 }

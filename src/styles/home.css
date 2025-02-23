@@ -107,6 +107,8 @@
     border-radius: 20px;
     color: antiquewhite;
     font-size: larger;
+    display: flex;
+    gap: 20px;
 }
 
 .excard {
