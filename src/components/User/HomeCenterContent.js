@@ -27,7 +27,7 @@ const HomeCenterContent = () => {
 
     }, [])
 
-
+    // console.log(listLess)
 
     return (
         <>
@@ -36,7 +36,7 @@ const HomeCenterContent = () => {
 
                 {listLess && listLess.length > 0 && listLess.map((teacher, index) => {
                     return (
-                        <>
+                        <div key={`techer${index}`}>
                             <div className="header-content" >
                                 <span>
                                     {teacher.teacher.image ?
@@ -49,9 +49,9 @@ const HomeCenterContent = () => {
                                     }</span>
                                 <h1>{teacher.teacher.userName}</h1>
                             </div>
-                            {teacher?.lession?.map((less) => {
+                            {teacher?.lession?.map((less, indexStudent) => {
                                 return (
-                                    <div className="card-container">
+                                    <div key={`student${indexStudent}`} className="card-container">
                                         <div key={`lessionListkey${index}`} className={`excard ${index}`}>
                                             <div className="image">
                                                 {less.image ?
@@ -92,7 +92,7 @@ const HomeCenterContent = () => {
                                 )
                             })}
 
-                        </>
+                        </div>
                     )
                 }
 

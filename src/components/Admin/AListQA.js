@@ -44,6 +44,7 @@ const AListQA = (props) => {
     }
 
     const handlerUpdateQues = (val) => {
+        // console.log(val.image)
         setQuesUpdate(val);
         setShowModalUpdateQues(true);
     }

@@ -178,7 +178,7 @@ const AModalUpdateQA = (props) => {
     // console.log("ques", quesUpdate)
 
 
-
+    // console.log(quesUpdate.image)
     return (
         <>
             {quesUpdate &&
@@ -217,7 +217,7 @@ const AModalUpdateQA = (props) => {
                                 {!quesUpdate.image ?
                                     <span>preview</span>
                                     :
-                                    <Zoom><img src={ConvertBufferToBase64(quesUpdate.image)} alt=""></img></Zoom>
+                                    <Zoom><img src={(quesUpdate.image)} alt=""></img></Zoom>
                                 }
                             </div>
                         </div>
