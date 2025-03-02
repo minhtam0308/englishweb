@@ -26,6 +26,8 @@ const LessionDoing = (props) => {
     const [corr, setCorr] = useState(0);
     const [choseQues, setChoseQues] = useState([]);
 
+    const [checkClick, setCheckClick] = useState(false);
+
     useEffect(() => {
         getQA();
     }, [])
@@ -47,59 +49,65 @@ const LessionDoing = (props) => {
 
 
     const handleChooseAns = async (idAns, idQues, idLess, time) => {
-        let res = await PostCheckCorrAns(idAns, idQues, idLess, time);
-        let resCorrAns = await GetFindCorrectAns(idQues);
-        // console.log(res)
-        if (res.EC === 0 && resCorrAns.EC === 0 && checkCorrAns === null) {
-            if (res.EM === "Correct") {
-                setCheckCorrAns({
-                    id: idAns,
-                    is_true: true
-                });
-                setCorr(corr + 1);
-                let temp = [...choseQues];
-                temp.push({
-                    choseQues: dataQA[pageQues],
-                    corrAns: resCorrAns.EM,
-                    checkCorrAns: {
+        setCheckClick(true);
+        if (checkClick === false) {
+            let res = await PostCheckCorrAns(idAns, idQues, idLess, time);
+            let resCorrAns = await GetFindCorrectAns(idQues);
+            // console.log(res)
+            if (res.EC === 0 && resCorrAns.EC === 0 && checkCorrAns === null) {
+                if (res.EM === "Correct") {
+                    setCheckCorrAns({
                         id: idAns,
                         is_true: true
-                    }
-                })
-                setChoseQues(temp);
+                    });
+                    setCorr(corr + 1);
+                    let temp = [...choseQues];
+                    temp.push({
+                        choseQues: dataQA[pageQues],
+                        corrAns: resCorrAns.EM,
+                        checkCorrAns: {
+                            id: idAns,
+                            is_true: true
+                        }
+                    })
+                    setChoseQues(temp);
 
-            } else {
-                setCheckCorrAns({
-                    id: idAns,
-                    is_true: false
-                });
-                let temp = [...choseQues];
-                temp.push({
-                    choseQues: dataQA[pageQues],
-                    corrAns: resCorrAns.EM,
-                    checkCorrAns: {
+                } else {
+                    setCheckCorrAns({
                         id: idAns,
                         is_true: false
-                    }
-                })
-                setChoseQues(temp);
+                    });
+                    let temp = [...choseQues];
+                    temp.push({
+                        choseQues: dataQA[pageQues],
+                        corrAns: resCorrAns.EM,
+                        checkCorrAns: {
+                            id: idAns,
+                            is_true: false
+                        }
+                    })
+                    setChoseQues(temp);
+
+                }
+                //vi o day chechCorrAns = null
+                // let temp = [...choseQues];
+                // temp.push({
+                //     choseQues: dataQA[pageQues],
+                //     corrAns: resCorrAns.EM,
+                //     checkCorrAns: checkCorrAns
+                // })
+                setTimeout(() => {
+
+                    setPageQues(pageQues + 1);
+                    setCheckCorrAns(null);
+
+                }, 1500)
 
             }
-            //vi o day chechCorrAns = null
-            // let temp = [...choseQues];
-            // temp.push({
-            //     choseQues: dataQA[pageQues],
-            //     corrAns: resCorrAns.EM,
-            //     checkCorrAns: checkCorrAns
-            // })
-            setTimeout(() => {
-
-                setPageQues(pageQues + 1);
-                setCheckCorrAns(null);
-
-            }, 1500)
+            setCheckClick(false);
 
         }
+
 
     }
     // console.log("chose", choseQues)
