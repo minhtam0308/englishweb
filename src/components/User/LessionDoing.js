@@ -100,11 +100,12 @@ const LessionDoing = (props) => {
 
                     setPageQues(pageQues + 1);
                     setCheckCorrAns(null);
+                    setCheckClick(false);
 
                 }, 1500)
 
             }
-            setCheckClick(false);
+
 
         }
 
