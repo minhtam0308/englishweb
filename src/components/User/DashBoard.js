@@ -15,7 +15,7 @@ const DashBoard = () => {
         const getHis = async () => {
             const res = await GetHistoryUser();
             setHisData(res);
-            console.log(res);
+            // console.log(res);
         }
         getHis();
     }, [])
@@ -34,28 +34,36 @@ const DashBoard = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {hisData?.map((val, index) => {
-                            return (
+                        {hisData?.EC === 0
+                            ?
+                            hisData.his?.map((val, index) => {
+                                return (
 
-                                <tr key={`his ${index}`}>
-                                    <td>{index}</td>
-                                    <td>{val.LessInfor.title}</td>
-                                    <td>{
-                                        val.LessInfor.image
-                                            ?
-                                            <Zoom>
-                                                <img alt='imageLess' className='imgHisLess' src={ConvertBufferToBase64(val.LessInfor.image)} />
-                                            </Zoom>
-                                            :
-                                            ""
-                                    }</td>
-                                    <td>{moment(val.HisInfor.startAt).zone('+07:00').format('DD/MM/yyyy')}</td>
-                                    <td>{moment(Date.parse(val.HisInfor.finishAt) - Date.parse(val.HisInfor.startAt)).toISOString().substring(11, 19)}</td>
-                                    <td>{`${val.HisInfor.countCorrect} / ${val.HisInfor.countQues}`}</td>
-                                </tr>
+                                    <tr key={`his ${index}`}>
+                                        <td>{index}</td>
+                                        <td>{val.LessInfor.title}</td>
+                                        <td>{
+                                            val.LessInfor.image?.data?.length > 0
+                                                ?
+                                                <Zoom>
+                                                    <img alt='imageLess' className='imgHisLess' src={ConvertBufferToBase64(val.LessInfor.image)} />
+                                                </Zoom>
+                                                :
+                                                ""
+                                        }</td>
+                                        <td>
+                                            {moment(val.HisInfor.startAt).zone('+07:00').format('DD/MM/yyyy')}</td>
+                                        <td>{moment(Date.parse(val.HisInfor.finishAt) - Date.parse(val.HisInfor.startAt)).toISOString().substring(11, 19)}</td>
+                                        <td>{`${val.HisInfor.countCorrect} / ${val.HisInfor.countQues}`}</td>
+                                    </tr>
 
-                            )
-                        })}
+                                )
+                            })
+                            :
+                            <h1>
+                                You Have Not Yet Done Any Lession
+                            </h1>
+                        }
 
 
                     </tbody>
