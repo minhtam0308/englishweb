@@ -2,7 +2,7 @@ import avarta from '../../assets/avatar.png';
 
 import { useEffect, useState } from 'react';
 import { apiGetAllLession } from '../../api/apiAdmin';
-import Zoom from 'react-medium-image-zoom'
+import Zoom from 'react-medium-image-zoom';
 import { NavLink } from 'react-router-dom';
 import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 const HomeCenterContent = () => {

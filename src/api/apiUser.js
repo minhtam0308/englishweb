@@ -99,6 +99,15 @@ const PutChangePassword = async (oldPass, newPass) => {
         console.log(e)
     }
 }
+
+const GetHistoryUser = async () => {
+    try {
+        let res = await axios.get('api/GetHisUser');
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -109,5 +118,6 @@ export {
     GetRefreshPage,
     PostSendEmailVerify,
     PutUpdateVerifyEmail,
-    PutChangePassword
+    PutChangePassword,
+    GetHistoryUser
 }

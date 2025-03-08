@@ -2,7 +2,7 @@
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from './pages/User/home';
 import HomeCenterContent from './components/User/HomeCenterContent';
-import Chat from './components/User/Chat';
+import DashBoard from './components/User/DashBoard';
 import Lession from './components/Admin/Lession';
 import { Bounce, ToastContainer } from 'react-toastify';
 import 'react-medium-image-zoom/dist/styles.css'
@@ -24,11 +24,12 @@ function App() {
   // console.log(location.pathname);
   useEffect(() => {
     const refreshAuth = async () => {
-      let res = await GetRefreshPage();
+
       // console.log(res)
       if (location.pathname === '/verify') {
         return;
       }
+      let res = await GetRefreshPage();
       if (res?.EC !== 0) {
         navigate('/registerUSer');
       } else {
@@ -49,7 +50,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />}>
           <Route path='/' element={<HomeCenterContent />} />
-          <Route path='/chat' element={<Chat />} />
+          <Route path='/dashBoard' element={<DashBoard />} />
         </Route>
         {Auth.auth.user.role !== 'USER' &&
           <Route path='/admin' element={<HomeAdmin />} >
