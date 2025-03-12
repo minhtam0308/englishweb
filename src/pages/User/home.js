@@ -6,11 +6,15 @@ import HomeLeftContent from '../../components/User/HomeLeftContent';
 import HomeRightContent from '../../components/User/HomeRightContent';
 
 import { Outlet } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
-const Home = () => {
+const Home = (props) => {
 
     // console.log(localStorage)
+    useEffect(() => {
+        props.ControlAudio("stop");
+    })
 
 
     return (

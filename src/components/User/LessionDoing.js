@@ -30,6 +30,7 @@ const LessionDoing = (props) => {
 
     useEffect(() => {
         getQA();
+        props.ControlAudio("start");
     }, [])
 
     const getQA = async () => {
@@ -180,7 +181,7 @@ const LessionDoing = (props) => {
                             </div>
                         </>
                     }
-                    {dataQA && pageQues === dataQA.length &&
+                    {dataQA && pageQues === dataQA.length && props.ControlAudio("stop") &&
 
 
                         <LessionDoingResult
@@ -188,6 +189,7 @@ const LessionDoing = (props) => {
                             color={color}
                             ConvertBufferToBase64={ConvertBufferToBase64}
                             corr={corr}
+                            pauseAudio={props.pauseAudio}
                         />
 
                     }

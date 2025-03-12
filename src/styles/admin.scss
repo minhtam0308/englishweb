@@ -276,11 +276,19 @@
     .setting {
         display: flex;
         align-items: center;
+        transition: 1s;
+    }
+
+    .name-user {
+        width: 70px;
+        overflow: hidden;
+        height: 30px;
     }
 }
 
 .rotate30deg {
-    rotate: 40deg;
+    transition: 1s;
+    rotate: 50deg;
 }
 
 .closeSetting {
@@ -302,7 +310,8 @@
         left: 85vw;
         padding: 10px;
         width: 150px;
-        border-radius: 10px;
+        // border-radius: 10px;
+        border: 1px solid rgb(69, 68, 68);
         box-shadow: 2px 2px 2px 2px #b5b1b1;
         color: red;
         cursor: pointer;
@@ -322,6 +331,17 @@
     height: 100px;
     width: 100px;
     object-fit: contain;
+}
+
+.center-content {
+    .header-content {
+        .img-teacher-less {
+            img {
+                width: 60px;
+                border-radius: 10px;
+            }
+        }
+    }
 }
 
 //effect appears react

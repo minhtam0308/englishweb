@@ -108,6 +108,15 @@ const GetHistoryUser = async () => {
         console.log(e)
     }
 }
+
+const PutUpdateUser = async (userName, imageUser) => {
+    try {
+        let res = await axios.put('api/PutChangeInforUser', { userName, imageUser });
+        return res;
+    } catch (e) {
+        console.log("err from fronend")
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -119,5 +128,6 @@ export {
     PostSendEmailVerify,
     PutUpdateVerifyEmail,
     PutChangePassword,
-    GetHistoryUser
+    GetHistoryUser,
+    PutUpdateUser
 }

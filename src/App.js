@@ -9,18 +9,23 @@ import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
 import LessionDoing from './components/User/LessionDoing';
 import RegisterUser from './components/User/RegisterUser';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ContextAuth } from './Context/Context';
 import { GetRefreshPage } from './api/apiUser';
 import VerifyPage from './components/User/VerifyPage';
 import HomeAdmin from './pages/Admin/HomeAdmin';
-
+import music from './assets/testaudio.mp3';
 
 
 function App() {
   const Auth = useContext(ContextAuth);
   const navigate = useNavigate();
   const location = useLocation();
+
+  //music
+  const [musicDoingLEss] = useState(new Audio(music));
+
+
   // console.log(location.pathname);
   useEffect(() => {
     const refreshAuth = async () => {
@@ -29,6 +34,9 @@ function App() {
       if (location.pathname === '/verify') {
         return;
       }
+      // musicDoingLEss.pause();
+      // musicDoingLEss.currentTime = 0;
+
       let res = await GetRefreshPage();
       if (res?.EC !== 0) {
         navigate('/registerUSer');
@@ -43,12 +51,34 @@ function App() {
     }
 
     refreshAuth();
+
   }, [])
+
+  const ControlAudio = (key) => {
+    const playAudio = () => {
+      musicDoingLEss.loop = true;
+      musicDoingLEss.play();
+    }
+
+    const pasueAudio = () => {
+      musicDoingLEss.pause();
+      musicDoingLEss.currentTime = 0;
+    }
+    if (key === "start") {
+      playAudio();
+    } else {
+      pasueAudio();
+    }
+    return true;
+  }
+
+
+
   // console.log(Auth.auth.user)
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home />}>
+        <Route path='/' element={<Home ControlAudio={ControlAudio} />}>
           <Route path='/' element={<HomeCenterContent />} />
           <Route path='/dashBoard' element={<DashBoard />} />
         </Route>
@@ -58,7 +88,9 @@ function App() {
 
           </Route>}
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
-        <Route path='/doingLess' element={<LessionDoing />} />
+        <Route path='/doingLess' element={<LessionDoing
+          ControlAudio={ControlAudio}
+        />} />
         <Route path='/registerUSer' element={< RegisterUser />} />
         <Route path='/verify' element={< VerifyPage />} />
 

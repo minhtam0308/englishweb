@@ -52,7 +52,7 @@ const DashBoard = () => {
                                                 ""
                                         }</td>
                                         <td>
-                                            {moment(val.HisInfor.startAt).zone('+07:00').format('DD/MM/yyyy')}</td>
+                                            {moment(val.HisInfor.startAt).format('DD/MM/yyyy')}</td>
                                         <td>{moment(Date.parse(val.HisInfor.finishAt) - Date.parse(val.HisInfor.startAt)).toISOString().substring(11, 19)}</td>
                                         <td>{`${val.HisInfor.countCorrect} / ${val.HisInfor.countQues}`}</td>
                                     </tr>
@@ -60,9 +60,9 @@ const DashBoard = () => {
                                 )
                             })
                             :
-                            <h1>
-                                You Have Not Yet Done Any Lession
-                            </h1>
+                            <tr>
+                                <td colSpan={6}>You have not done any lesstions</td>
+                            </tr>
                         }
 
 

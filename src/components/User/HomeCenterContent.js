@@ -38,8 +38,8 @@ const HomeCenterContent = () => {
                     return (
                         <div key={`techer${index}`}>
                             <div className="header-content" >
-                                <span>
-                                    {teacher.teacher.image ?
+                                <span className='img-teacher-less'>
+                                    {teacher.teacher.image?.data.length > 0 ?
                                         <Zoom>
                                             <img src={ConvertBufferToBase64(teacher.teacher.image)} alt="" />
                                         </Zoom>
@@ -54,7 +54,7 @@ const HomeCenterContent = () => {
                                     <div key={`student${indexStudent}`} className="card-container">
                                         <div key={`lessionListkey${index}`} className={`excard ${index}`}>
                                             <div className="image">
-                                                {less.image ?
+                                                {less.image?.data.length > 0 ?
                                                     <Zoom>
                                                         <img src={ConvertBufferToBase64(less.image)} alt="" />
                                                     </Zoom>

@@ -13,7 +13,7 @@ import { CiSettings } from "react-icons/ci";
 import { FaBookOpen } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
 import ModalLogOut from '../User/ModalLogOut';
-import ModalChangePass from '../User/ModalChangePass';
+import Setting from '../User/Setting';
 
 
 
@@ -99,7 +99,7 @@ const HomeHeaderAdmin = () => {
                 show={showLogOut}
                 handleClose={handleCloseOut}
             />
-            <ModalChangePass
+            <Setting
                 showSetting={showSetting}
                 handleClose={handleCloseSetting}
             />

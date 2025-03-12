@@ -14,7 +14,7 @@ import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 import { CiSettings } from "react-icons/ci";
 import { FaBookOpen } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
-import ModalChangePass from './ModalChangePass';
+import Setting from './Setting';
 
 
 
@@ -41,7 +41,7 @@ const HomeHeader = () => {
             handleShowOut()
         }
     }
-
+    // console.log(Auth)
     return (
         <>
 
@@ -88,7 +88,7 @@ const HomeHeader = () => {
                     }
 
                     <div className="avarta-user">
-                        {!Auth.auth.user.image ?
+                        {!Auth.auth.user.image || Auth.auth.user.image?.data.length === 0 ?
                             <img src={avarta} alt="Avarta" />
                             :
                             <img src={ConvertBufferToBase64(Auth.auth.user.image)} alt="Avarta" />
@@ -117,7 +117,7 @@ const HomeHeader = () => {
                 show={showLogOut}
                 handleClose={handleCloseOut}
             />
-            <ModalChangePass
+            <Setting
                 showSetting={showSetting}
                 handleClose={handleCloseSetting}
             />
