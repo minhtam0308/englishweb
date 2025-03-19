@@ -19,7 +19,6 @@ const ModalLogOut = (props) => {
         handleClose();
         localStorage.removeItem('token');
         window.location.reload();
-
     }
     return (<>
         {show &&

@@ -14,7 +14,9 @@ import { ContextAuth } from './Context/Context';
 import { GetRefreshPage } from './api/apiUser';
 import VerifyPage from './components/User/VerifyPage';
 import HomeAdmin from './pages/Admin/HomeAdmin';
-import music from './assets/testaudio.mp3';
+import BDashBoardAdmin from './components/Admin/BDashBoardAdmin';
+
+
 
 
 function App() {
@@ -22,8 +24,7 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //music
-  const [musicDoingLEss] = useState(new Audio(music));
+
 
 
   // console.log(location.pathname);
@@ -54,23 +55,6 @@ function App() {
 
   }, [])
 
-  const ControlAudio = (key) => {
-    const playAudio = () => {
-      musicDoingLEss.loop = true;
-      musicDoingLEss.play();
-    }
-
-    const pasueAudio = () => {
-      musicDoingLEss.pause();
-      musicDoingLEss.currentTime = 0;
-    }
-    if (key === "start") {
-      playAudio();
-    } else {
-      pasueAudio();
-    }
-    return true;
-  }
 
 
 
@@ -78,19 +62,17 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/' element={<Home ControlAudio={ControlAudio} />}>
+        <Route path='/' element={<Home />}>
           <Route path='/' element={<HomeCenterContent />} />
           <Route path='/dashBoard' element={<DashBoard />} />
         </Route>
         {Auth.auth.user.role !== 'USER' &&
-          <Route path='/admin' element={<HomeAdmin />} >
+          <Route path='/admin' element={<HomeAdmin />}>
             <Route index element={<Lession />} />
-
+            <Route path='/admin/dashBoard' element={<BDashBoardAdmin />} />
           </Route>}
         <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
-        <Route path='/doingLess' element={<LessionDoing
-          ControlAudio={ControlAudio}
-        />} />
+        <Route path='/doingLess' element={<LessionDoing />} />
         <Route path='/registerUSer' element={< RegisterUser />} />
         <Route path='/verify' element={< VerifyPage />} />
 

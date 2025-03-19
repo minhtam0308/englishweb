@@ -117,6 +117,30 @@ const PutUpdateUser = async (userName, imageUser) => {
         console.log("err from fronend")
     }
 }
+
+const Get5HisUser = async () => {
+    try {
+        let res = await axios.get('api/Get5His');
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const DelHisUser = async (time, idLess) => {
+    try {
+        console.log(time, idLess);
+        let res = await axios.delete('api/DelHisUser', {
+            data: {
+                time,
+                idLess
+            }
+        });
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -129,5 +153,7 @@ export {
     PutUpdateVerifyEmail,
     PutChangePassword,
     GetHistoryUser,
-    PutUpdateUser
+    PutUpdateUser,
+    Get5HisUser,
+    DelHisUser
 }

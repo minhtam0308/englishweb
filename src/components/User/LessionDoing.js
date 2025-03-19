@@ -6,7 +6,9 @@ import { TiTick } from "react-icons/ti";
 import { FaXmark } from "react-icons/fa6";
 import LessionDoingResult from "./LessionDoingResult";
 import ConvertBufferToBase64 from "../../handlerCommon/ConvertBufferToBase64";
-
+import successAudio from '../../assets/successAudio.mp3';
+import errorAudio from '../../assets/errorAudio.mp3';
+import ContinueDoing from "./ContinueDoing";
 
 
 const LessionDoing = (props) => {
@@ -28,9 +30,10 @@ const LessionDoing = (props) => {
 
     const [checkClick, setCheckClick] = useState(false);
 
+    const [continueDoing, setContinueDoing] = useState(null);
+
     useEffect(() => {
         getQA();
-        props.ControlAudio("start");
     }, [])
 
     const getQA = async () => {
@@ -46,17 +49,48 @@ const LessionDoing = (props) => {
         }
 
     }
+    //music
+    const [successMusic] = useState(new Audio(successAudio));
+    const [errorMusic] = useState(new Audio(errorAudio));
+
+
+    const ControlAudio = (key, type) => {
+        const playAudio = () => {
+            if (type === "success") {
+                successMusic.play();
+            } else if (type === "error") {
+                errorMusic.play();
+            }
+
+        }
+
+        const pauseAudio = () => {
+            successMusic.pause();
+            successMusic.currentTime = 0;
+            errorMusic.pause();
+            errorMusic.currentTime = 0;
+
+        }
+        if (key === "start") {
+            playAudio();
+        } else if (key === "pause") {
+            pauseAudio();
+        }
+        return true;
+    }
 
 
 
     const handleChooseAns = async (idAns, idQues, idLess, time) => {
-        setCheckClick(true);
+        setCheckClick(true);// sfter finishing this handle current, this var update
         if (checkClick === false) {
             let res = await PostCheckCorrAns(idAns, idQues, idLess, time);
             let resCorrAns = await GetFindCorrectAns(idQues);
             // console.log(res)
             if (res.EC === 0 && resCorrAns.EC === 0 && checkCorrAns === null) {
                 if (res.EM === "Correct") {
+                    ControlAudio("start", "success");
+                    setContinueDoing("success");
                     setCheckCorrAns({
                         id: idAns,
                         is_true: true
@@ -72,8 +106,13 @@ const LessionDoing = (props) => {
                         }
                     })
                     setChoseQues(temp);
+                    // console.log(checkClick); //false
+
 
                 } else {
+                    ControlAudio("start", "error")
+                    setContinueDoing("error");
+
                     setCheckCorrAns({
                         id: idAns,
                         is_true: false
@@ -97,13 +136,7 @@ const LessionDoing = (props) => {
                 //     corrAns: resCorrAns.EM,
                 //     checkCorrAns: checkCorrAns
                 // })
-                setTimeout(() => {
 
-                    setPageQues(pageQues + 1);
-                    setCheckCorrAns(null);
-                    setCheckClick(false);
-
-                }, 1500)
 
             }
 
@@ -114,7 +147,13 @@ const LessionDoing = (props) => {
     }
     // console.log("chose", choseQues)
 
-
+    const handleClickContinue = () => {
+        ControlAudio("pause", "all");
+        setPageQues(pageQues + 1);
+        setCheckCorrAns(null);
+        setCheckClick(false);
+        setContinueDoing(null);
+    }
 
     return (
         <>
@@ -181,7 +220,11 @@ const LessionDoing = (props) => {
                             </div>
                         </>
                     }
-                    {dataQA && pageQues === dataQA.length && props.ControlAudio("stop") &&
+                    {continueDoing && <ContinueDoing
+                        continueDoing={continueDoing}
+                        handleClickContinue={handleClickContinue}
+                    />}
+                    {dataQA && pageQues === dataQA.length &&
 
 
                         <LessionDoingResult

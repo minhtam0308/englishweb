@@ -40,9 +40,14 @@ const ModalLoginUser = (props) => {
         })
         if (res?.EC === 0) {
             localStorage.setItem("token", res.token)
-            navigate('/');
+            if (res.role === "ADMIN") {
+                navigate('/admin');
+                window.location.reload();
+            } else if (res.role === "USER") {
+                navigate('/');
+                window.location.reload();
+            }
             handleClose();
-            window.location.reload();
 
         } else {
             toast.error(res?.EM);

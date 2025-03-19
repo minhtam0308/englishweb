@@ -342,6 +342,117 @@
             }
         }
     }
+
+    .menu-his {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+
+
+    }
+
+    .menuHis_container {
+        transition: 0.8s;
+        position: relative;
+        display: block;
+        top: 0;
+
+        .content_containerHis {
+            position: absolute;
+            border: 1px solid;
+            padding: 1px 10px;
+            left: 10px;
+            z-index: 3;
+            width: 170px;
+            font-size: 15px;
+            background: aliceblue;
+        }
+    }
+
+    .noneMenu {
+        top: 10px;
+        height: 0;
+        border: none;
+        overflow: hidden;
+    }
+
+    .focus {
+        border: 2px solid black;
+        border-radius: 5px;
+    }
+}
+
+
+.container_ContinueDoing {
+    text-align: center;
+    background-color: #1a2b2b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0vw;
+    margin: 15px;
+    padding: 5px;
+
+    .message {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ff5e5e;
+    }
+
+    .sub-message {
+        font-size: 1rem;
+        color: #ff8e8e;
+    }
+
+    .btn-custom {
+        background-color: #ff5e5e;
+        color: #1a2b2b;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 25px;
+        margin-top: 20px;
+        width: 100%;
+        max-width: 300px;
+    }
+
+}
+
+.container_SuccessDoing {
+    background-color: #1a2b2d;
+    color: #a3d977;
+    text-align: center;
+    padding-top: 20px;
+    margin: 15px;
+    padding: 5px;
+
+    .btn-custom {
+        background-color: #a3d977;
+        color: #1a2b2d;
+        font-weight: bold;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+    }
+
+}
+
+.hoverhis:hover {
+    background-color: rgba(35, 35, 36, 0.133);
+    cursor: pointer;
+}
+
+.shield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 2;
 }
 
 //effect appears react

@@ -3,6 +3,7 @@ import Zoom from 'react-medium-image-zoom';
 import { TiTick } from "react-icons/ti";
 import { FaXmark } from "react-icons/fa6";
 import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
+import { NavLink } from 'react-router-dom';
 const LessionDoingResult = (props) => {
 
     const { choseQues, color, corr } = props;
@@ -105,6 +106,11 @@ const LessionDoingResult = (props) => {
                 })
 
             }
+            <NavLink to="/">
+                <button className='btn btn-secondary'>
+                    Go To Home Page
+                </button>
+            </NavLink>
         </div>
     )
 }

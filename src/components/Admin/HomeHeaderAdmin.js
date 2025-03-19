@@ -51,13 +51,13 @@ const HomeHeaderAdmin = () => {
 
 
 
-                <NavLink to="/admin">
+                <NavLink to="/admin" end>
                     <div className="left-navbar-container">
                         <span><FaBookOpen /></span>
                         <div className='name-nav'>Lession</div>
                     </div>
                 </NavLink>
-                <NavLink to="/">
+                <NavLink to="/admin/dashBoard">
                     <div className="right-navbar-container">
                         <MdDashboard />
                         <div className='name-nav'>Dashboard</div>
