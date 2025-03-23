@@ -6,12 +6,12 @@ import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 import { NavLink } from 'react-router-dom';
 const LessionDoingResult = (props) => {
 
-    const { choseQues, color, corr } = props;
+    const { choseQues, color, corr, totalqQues } = props;
 
     return (
         <div className="result-container">
             <h1 className="text-center">
-                RESULT: {choseQues && choseQues.length > 0 && `${corr} / ${choseQues.length}`}
+                RESULT: {choseQues && choseQues.length > 0 && `${corr} / ${totalqQues}`}
             </h1>
             {choseQues && choseQues.length > 0 &&
                 choseQues.map((val, index) => {

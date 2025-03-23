@@ -73,7 +73,7 @@ const DashBoard = () => {
                                         <td>
                                             {moment(val.HisInfor.startAt).format('DD/MM/yyyy')}</td>
                                         <td>{moment(Date.parse(val.HisInfor.finishAt) - Date.parse(val.HisInfor.startAt)).toISOString().substring(11, 19)}</td>
-                                        <td style={{ "position": "relative" }}>{`${val.HisInfor.countCorrect} / ${val.HisInfor.countQues}`}
+                                        <td style={{ "position": "relative" }}>{`${val.HisInfor.countCorrect} / ${val.countQues}`}
                                             <span className={`menu-his ${focusMenu && focusMenu[0] === val.HisInfor.time && focusMenu[1] === val.LessInfor.id && "focus"}`}
                                                 onClick={() => {
                                                     handleClickMenuHis(val.HisInfor.time, val.LessInfor.id);

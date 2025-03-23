@@ -230,9 +230,8 @@ const LessionDoing = (props) => {
                         <LessionDoingResult
                             choseQues={choseQues}
                             color={color}
-                            ConvertBufferToBase64={ConvertBufferToBase64}
                             corr={corr}
-                            pauseAudio={props.pauseAudio}
+                            totalqQues={dataQA.length}
                         />
 
                     }
