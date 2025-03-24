@@ -2,8 +2,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-    // baseURL: "https://backend-study-orsm.onrender.com"
-    baseURL: "http://localhost:8080"
+    baseURL: "https://backend-study-orsm.onrender.com"
+    // baseURL: "http://localhost:8080"
 });
 
 // Add a request interceptor
