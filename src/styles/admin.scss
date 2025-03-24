@@ -75,7 +75,7 @@
             background-color: aqua;
             position: sticky;
             top: 0;
-            z-index: 100;
+            // z-index: 100;
         }
 
         td {
@@ -454,6 +454,65 @@
     width: 100vw;
     z-index: 2;
 }
+
+
+
+//superior style={{  background: "beige", height: "calc(100vh - 69px)", color: "black" }}
+.sideBar_container {
+    display: flex;
+    // flex-direction: column;
+    margin-top: 5px;
+    height: calc(100vh - 100px);
+    gap: 10px;
+    color: black;
+
+    // .pro-inner-list-item {
+    //     background-color: rgb(212, 212, 167) !important;
+
+    // }
+
+    .pro-sidebar {
+        background-color: rgb(129, 129, 109) !important;
+        color: wheat;
+        z-index: 1 !important;
+    }
+
+    .pro-sidebar-inner {
+        background-color: rgb(129, 129, 109) !important;
+
+    }
+
+    .pro-inner-item {
+        &:hover {
+            color: red !important;
+        }
+
+        &:focus {
+            color: red !important;
+        }
+    }
+
+    .popper-inner {
+        background-color: rgb(129, 129, 109) !important;
+    }
+
+    .active {
+        color: white !important;
+        background-color: transparent !important;
+    }
+
+}
+
+.table-account {
+    margin-top: 30px;
+}
+
+.row {
+    float: left;
+}
+
+
+
 
 //effect appears react
 // .messageout-enter {

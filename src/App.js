@@ -9,12 +9,16 @@ import 'react-medium-image-zoom/dist/styles.css'
 import AAddQAndA from './components/Admin/AAddQAndA';
 import LessionDoing from './components/User/LessionDoing';
 import RegisterUser from './components/User/RegisterUser';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { ContextAuth } from './Context/Context';
 import { GetRefreshPage } from './api/apiUser';
 import VerifyPage from './components/User/VerifyPage';
 import HomeAdmin from './pages/Admin/HomeAdmin';
 import BDashBoardAdmin from './components/Admin/BDashBoardAdmin';
+import Superior from './pages/Superiors/Superior';
+import ContentSuper from './components/Superior/ContentSuper';
+import TableUser from './components/Superior/TableUser';
+import TableAdmin from './components/Superior/TableAdmin';
 
 
 
@@ -70,11 +74,23 @@ function App() {
           <Route path='/admin' element={<HomeAdmin />}>
             <Route index element={<Lession />} />
             <Route path='/admin/dashBoard' element={<BDashBoardAdmin />} />
+            <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
           </Route>}
-        <Route path='/admin/CRUDQuestion' element={<AAddQAndA />} />
+
         <Route path='/doingLess' element={<LessionDoing />} />
         <Route path='/registerUSer' element={< RegisterUser />} />
         <Route path='/verify' element={< VerifyPage />} />
+
+        <Route path='/superior' element={< Superior />}>
+          <Route path='/superior' element={< ContentSuper />} >
+            <Route index element={< TableUser />} />
+            <Route path='/superior/studentAccount' element={< TableUser />} />
+            <Route path='/superior/teacherAccount' element={< TableAdmin />} />
+          </Route>
+
+
+        </Route>
+
 
       </Routes>
 
