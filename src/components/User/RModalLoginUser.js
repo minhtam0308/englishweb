@@ -46,6 +46,9 @@ const ModalLoginUser = (props) => {
             } else if (res.role === "USER") {
                 navigate('/');
                 window.location.reload();
+            } else if (res.role === "SUPERIOR") {
+                navigate('/superior');
+                window.location.reload();
             }
             handleClose();
 

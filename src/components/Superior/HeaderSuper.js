@@ -10,7 +10,7 @@ import { useState } from 'react';
 import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 
 import { CiSettings } from "react-icons/ci";
-import ModalLogOut from '../User/ModalLogOut';
+import ModalPrivate from '../User/ModalPrivate';
 import Setting from '../User/Setting';
 
 
@@ -73,7 +73,7 @@ const HeaderSuper = () => {
 
                 </div>}
         </div>
-        <ModalLogOut
+        <ModalPrivate
             show={showLogOut}
             handleClose={handleCloseOut}
         />

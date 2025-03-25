@@ -97,7 +97,7 @@ const AListLession = (props) => {
             toast.warning("Need To Write Enough Data");
         } else {
             const res = await apiPostUpdateLessById(id, title, description, image, level);
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 toast.success(res.EM);
                 props.setReset(!props.reset);
                 handleCloseModalChangeLession();
@@ -120,11 +120,11 @@ const AListLession = (props) => {
     const handlderSureDelete = async (val) => {
 
         const res = await apiPostDeleteLessById(val.id);
-        if (res.EC === 0) {
+        if (res?.EC === 0) {
             toast.success(res.EM);
             props.setReset(!props.reset);;
         } else {
-            toast.error(res.EM);
+            toast.error(res?.EM);
         }
         handleCloseModalDeleteLession();
     }

@@ -117,7 +117,7 @@ const Setting = (props) => {
         } else {
 
             const res = await PutUpdateUser(nameUpdate, imageUpdate);
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 toast.success(res.EM);
                 handleCloseModalUpdateUSer();
                 window.location.reload();

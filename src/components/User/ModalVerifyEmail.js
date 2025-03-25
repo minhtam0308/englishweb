@@ -15,17 +15,17 @@ const ModalVerifyEmail = (props) => {
 
     const handleYesVerify = async () => {
         const res = await PostRegisterUser(dataRegister);
-        if (res.EC === 0) {
+        if (res?.EC === 0) {
             toast.success("Wait for second");
             handleClose();
             const verify = await PostSendEmailVerify(dataRegister.email);
             toast.success(verify.EM);
-        } else if (res.EC === 1) {
+        } else if (res?.EC === 1) {
             toast.warning(res.EM);
-        } else if (res.EC === 2) {
+        } else if (res?.EC === 2) {
             toast.warning(res.EM);
         } else {
-            toast.error(res.EM);
+            toast.error(res?.EM);
         }
 
     }

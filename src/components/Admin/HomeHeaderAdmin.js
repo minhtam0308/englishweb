@@ -12,7 +12,7 @@ import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 import { CiSettings } from "react-icons/ci";
 import { FaBookOpen } from "react-icons/fa";
 import { MdDashboard } from "react-icons/md";
-import ModalLogOut from '../User/ModalLogOut';
+import ModalPrivate from '../User/ModalPrivate';
 import Setting from '../User/Setting';
 
 
@@ -95,7 +95,7 @@ const HomeHeaderAdmin = () => {
 
                     </div>}
             </div>
-            <ModalLogOut
+            <ModalPrivate
                 show={showLogOut}
                 handleClose={handleCloseOut}
             />

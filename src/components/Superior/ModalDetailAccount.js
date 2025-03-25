@@ -19,10 +19,10 @@ const ModalDetailAccount = (props) => {
     const handleCloseAccDel = () => setModaldelAcc(false);
     const handleDelUser = async () => {
         let res = await DelUserAccount(inforUser.id);
-        if (res.EC === 0) {
+        if (res?.EC === 0) {
             toast.success(res.EM);
         } else {
-            toast.error(res.EM);
+            toast.error(res?.EM);
         }
         handleClose();
         handleCloseAccDel();
@@ -31,10 +31,10 @@ const ModalDetailAccount = (props) => {
 
     const handleUpdateUser = async () => {
         let res = await UpUserToTeach(inforUser.id);
-        if (res.EC === 0) {
+        if (res?.EC === 0) {
             toast.success(res.EM);
         } else {
-            toast.error(res.EM);
+            toast.error(res?.EM);
         }
         handleClose();
         handleCloseUpAcc();

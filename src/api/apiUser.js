@@ -129,7 +129,7 @@ const Get5HisUser = async () => {
 
 const DelHisUser = async (time, idLess) => {
     try {
-        console.log(time, idLess);
+        // console.log(time, idLess);
         let res = await axios.delete('api/DelHisUser', {
             data: {
                 time,
@@ -141,6 +141,16 @@ const DelHisUser = async (time, idLess) => {
         console.log(e)
     }
 }
+
+const PostComment = async (comment) => {
+    try {
+        let res = await axios.post('api/PostComment', { comment });
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -155,5 +165,6 @@ export {
     GetHistoryUser,
     PutUpdateUser,
     Get5HisUser,
-    DelHisUser
+    DelHisUser,
+    PostComment
 }

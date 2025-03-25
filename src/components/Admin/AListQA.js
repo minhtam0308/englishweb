@@ -31,7 +31,7 @@ const AListQA = (props) => {
 
                 setDataQA(res);
                 // console.log(res)
-                if (res.EC !== 0) {
+                if (res?.EC !== 0) {
                     toast.error(res.EM);
                 }
             }

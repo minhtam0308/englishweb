@@ -87,7 +87,7 @@ const LessionDoing = (props) => {
             let res = await PostCheckCorrAns(idAns, idQues, idLess, time);
             let resCorrAns = await GetFindCorrectAns(idQues);
             // console.log(res)
-            if (res.EC === 0 && resCorrAns.EC === 0 && checkCorrAns === null) {
+            if (res?.EC === 0 && resCorrAns.EC === 0 && checkCorrAns === null) {
                 if (res.EM === "Correct") {
                     ControlAudio("start", "success");
                     setContinueDoing("success");

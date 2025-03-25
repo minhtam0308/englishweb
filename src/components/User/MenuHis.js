@@ -39,12 +39,12 @@ const MenuHis = (props) => {
         }
         // console.log(focusMenu);
         const res = await DelHisUser(focusMenu[0], focusMenu[1]);
-        if (res.EC === 0) {
+        if (res?.EC === 0) {
             toast.success(res.EM);
             handleCloseShowModalAcceptdel();
             setReset(!reset);
         } else {
-            toast.error(res.EM);
+            toast.error(res?.EM);
             handleCloseShowModalAcceptdel();
 
         }

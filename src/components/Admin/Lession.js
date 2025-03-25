@@ -40,7 +40,7 @@ const Lession = () => {
                 level
             });
             // console.log(res);
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 toast.success(res.EM);
                 setReset(!reset);
             } else {

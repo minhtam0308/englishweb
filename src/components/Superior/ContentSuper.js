@@ -30,9 +30,10 @@ const ContentSuper = () => {
                                     to={'/superior/teacherAccount'}
                                 >Teacher accounts</NavLink></MenuItem>
                             </SubMenu>
-                            <SubMenu title="Theme" >
-                                <MenuItem> Dark</MenuItem>
-                                <MenuItem> Light</MenuItem>
+                            <SubMenu title="Information" >
+                                <MenuItem><NavLink
+                                    to={'/superior/comment'}
+                                >Comment</NavLink> </MenuItem>
                             </SubMenu>
 
                         </Menu>
@@ -40,7 +41,7 @@ const ContentSuper = () => {
 
                     </div>
                 </ProSidebar>
-                <span onClick={() => {
+                <span className='poiter' onClick={() => {
                     setCollapsed(!collapsed)
                 }}>
                     <TiThMenuOutline />

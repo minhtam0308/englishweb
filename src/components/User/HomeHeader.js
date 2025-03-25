@@ -8,7 +8,7 @@ import { ContextAuth } from '../../Context/Context';
 import { useState } from 'react';
 
 import RModalLoginUser from './RModalLoginUser';
-import ModalLogOut from './ModalLogOut';
+import ModalPrivate from './ModalPrivate';
 import ConvertBufferToBase64 from '../../handlerCommon/ConvertBufferToBase64';
 
 import { CiSettings } from "react-icons/ci";
@@ -113,7 +113,7 @@ const HomeHeader = () => {
                 handleClose={handleCloseLogin}
             />
 
-            <ModalLogOut
+            <ModalPrivate
                 show={showLogOut}
                 handleClose={handleCloseOut}
             />

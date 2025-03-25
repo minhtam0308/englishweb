@@ -164,12 +164,12 @@ const AModalUpdateQA = (props) => {
         let res = await apiPostUpdateQuestion(arrDelete, quesUpdate);
         // console.log(res);
 
-        if (res.EC === 0) {
+        if (res?.EC === 0) {
             toast.success(res.EM);
             setRefresh(!refresh);
             handleCloseModal();
         } else {
-            toast.error(res.EM);
+            toast.error(res?.EM);
         }
 
     }

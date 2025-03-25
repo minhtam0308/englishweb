@@ -16,13 +16,13 @@ const TableUser = () => {
     useEffect(() => {
         const get5Userhandle = async () => {
             const res = await get5UserAccount();
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 setDataUser(res.EM);
             }
         }
         const getAllUserhandle = async () => {
             const res = await getAllUserAccount();
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 setDataUser(res.EM);
             }
         }

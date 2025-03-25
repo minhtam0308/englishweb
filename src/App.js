@@ -19,6 +19,7 @@ import Superior from './pages/Superiors/Superior';
 import ContentSuper from './components/Superior/ContentSuper';
 import TableUser from './components/Superior/TableUser';
 import TableAdmin from './components/Superior/TableAdmin';
+import TableComment from './components/Superior/TableComent';
 
 
 
@@ -80,18 +81,20 @@ function App() {
         <Route path='/doingLess' element={<LessionDoing />} />
         <Route path='/registerUSer' element={< RegisterUser />} />
         <Route path='/verify' element={< VerifyPage />} />
+        {Auth.auth.user.role === 'SUPERIOR' &&
+          <Route path='/superior' element={< Superior />}>
+            <Route path='/superior' element={< ContentSuper />} >
+              <Route index element={< TableUser />} />
+              <Route path='/superior/studentAccount' element={< TableUser />} />
+              <Route path='/superior/teacherAccount' element={< TableAdmin />} />
+              <Route path='/superior/comment' element={<TableComment />} />
 
-        <Route path='/superior' element={< Superior />}>
-          <Route path='/superior' element={< ContentSuper />} >
-            <Route index element={< TableUser />} />
-            <Route path='/superior/studentAccount' element={< TableUser />} />
-            <Route path='/superior/teacherAccount' element={< TableAdmin />} />
+            </Route>
+
+
           </Route>
 
-
-        </Route>
-
-
+        }
       </Routes>
 
       <ToastContainer

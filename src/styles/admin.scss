@@ -242,18 +242,29 @@
 
 .logOut-container {
     position: absolute;
+    left: 80vw;
+    top: 60px;
+    color: red;
+    box-shadow: 2px 2px 2px 2px #b5b1b1;
+    border-radius: 10px;
+    width: 100px;
+    overflow: hidden;
 
     .accept-logOut {
         background-color: white;
         position: relative;
-        left: 80vw;
         padding: 10px;
-        width: 100px;
-        border-radius: 10px;
-        box-shadow: 2px 2px 2px 2px #b5b1b1;
-        color: red;
-        cursor: pointer;
-        top: 60px;
+
+
+        &:hover {
+            background-color: yellow;
+        }
+    }
+
+    .conmment {
+        background-color: white;
+        position: relative;
+        padding: 10px;
 
         &:hover {
             background-color: yellow;

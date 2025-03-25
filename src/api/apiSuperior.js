@@ -26,11 +26,27 @@ const getAllAdminAccount = async () => {
     const res = await axios.get('api/GetAllAdminAccount');
     return res;
 }
+//coment
+const get5Comment = async () => {
+    const res = await axios.get('api/Get5Comment');
+    return res;
+}
+const getAllComment = async () => {
+    const res = await axios.get('api/GetAllComment');
+    return res;
+}
+const DelComment = async (id) => {
+    const res = await axios.delete('api/DelComment', { data: { id } });
+    return res;
+}
 export {
     get5UserAccount,
     getAllUserAccount,
     DelUserAccount,
     UpUserToTeach,
     get5AdminAccount,
-    getAllAdminAccount
+    getAllAdminAccount,
+    get5Comment,
+    getAllComment,
+    DelComment
 }

@@ -2,9 +2,11 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-const ModalLogOut = (props) => {
+import ModalComment from './ModalComment';
+const ModalPrivate = (props) => {
     const { show, handleClose } = props;
     const [showModalLogOut, setShowModalLogOut] = useState(false);
+    const [showModalComment, setShowModalComment] = useState(false);
     const handleCloseShowModal = () => {
         setShowModalLogOut(false);
     }
@@ -20,6 +22,11 @@ const ModalLogOut = (props) => {
         localStorage.removeItem('token');
         window.location.reload();
     }
+
+    const handleShowComment = () => {
+        setShowModalComment(true);
+        handleClose();
+    }
     return (<>
         {show &&
             <>
@@ -27,12 +34,16 @@ const ModalLogOut = (props) => {
                     handleClose();
                 }}></div>
                 <div className='logOut-container'>
-                    <div className='accept-logOut' onClick={
+                    <div className='accept-logOut poiter' onClick={
                         handleClickLogOut
                     }>
                         LOG OUT
                     </div>
+                    <div className='conmment poiter' onClick={handleShowComment} >
+                        Comment
+                    </div>
                 </div>
+
 
             </>
         }
@@ -56,7 +67,11 @@ const ModalLogOut = (props) => {
             </Modal.Footer>
         </Modal>
 
+        <ModalComment
+            show={showModalComment}
+            setShow={setShowModalComment}
+        />
     </>)
 
 }
-export default ModalLogOut;
+export default ModalPrivate;

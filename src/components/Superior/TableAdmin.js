@@ -17,13 +17,13 @@ const TableAdmin = () => {
     useEffect(() => {
         const get5Adminhandle = async () => {
             const res = await get5AdminAccount();
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 setDataUser(res.EM);
             }
         }
         const getAllAdminhandle = async () => {
             const res = await getAllAdminAccount();
-            if (res.EC === 0) {
+            if (res?.EC === 0) {
                 setDataUser(res.EM);
             }
         }

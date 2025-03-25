@@ -14,7 +14,7 @@ const HomeCenterContent = () => {
 
         const getAllLession = async () => {
             const res = await apiGetAllLession();
-            if (res && res.EC === 0) {
+            if (res && res?.EC === 0) {
                 setListLess(res.data);
 
             }
