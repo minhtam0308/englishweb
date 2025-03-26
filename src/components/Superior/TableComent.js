@@ -74,7 +74,7 @@ const TableComment = () => {
 
                     <tr>
                         <td
-                            colSpan={4}
+                            colSpan={5}
                             style={{ "textAlign": "center" }}
                             className='poiter'
                             onClick={() => {
