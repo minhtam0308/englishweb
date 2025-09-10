@@ -7,6 +7,7 @@ import { RiEyeLine } from "react-icons/ri";
 import { toast } from 'react-toastify';
 import { PostLoginUser } from '../../api/apiUser';
 import { useNavigate } from 'react-router-dom';
+import ModalForgotPass from './ModalForgotPass';
 
 const ModalLoginUser = (props) => {
 
@@ -18,7 +19,8 @@ const ModalLoginUser = (props) => {
     const navigate = useNavigate()
 
 
-    const { show, handleClose } = props;
+    const { show, handleClose, handleShow } = props;
+    const [showModalForgotPass, setShowModalForgotPass] = useState(false);
 
 
     const handleChangeEmail = (event) => {
@@ -56,6 +58,11 @@ const ModalLoginUser = (props) => {
             toast.error(res?.EM);
         }
 
+    }
+
+    const handleOpenModalForgot = () => {
+        setShowModalForgotPass(true);
+        handleClose();
     }
 
     return (
@@ -96,6 +103,12 @@ const ModalLoginUser = (props) => {
 
 
                         </span>
+                        <span
+                            className='poiter'
+                            onClick={handleOpenModalForgot}
+                            href='#'
+                            style={{ textDecoration: "underline", color: "blue", fontSize: "15px" }}
+                        >forgot the password?</span>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
@@ -107,6 +120,11 @@ const ModalLoginUser = (props) => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+            <ModalForgotPass
+                show={showModalForgotPass}
+                setShow={setShowModalForgotPass}
+                handleShowModalLofin={handleShow}
+            />
         </>
     )
 }

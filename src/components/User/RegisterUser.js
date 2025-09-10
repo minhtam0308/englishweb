@@ -80,7 +80,7 @@ const RegisterUser = () => {
             setEmailWrong(true);
             return;
         }
-        if (password === '') {
+        if (password === '' || !/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*(\W|_)).{5,}$/.test(password)) {
             setPasswordInvalid(true);
             return;
         }
@@ -197,7 +197,7 @@ const RegisterUser = () => {
 
                                     </span>
                                     <div className="invalid-feedback">
-                                        Please write password.
+                                        Your password is invalid
                                     </div>
                                 </div>
                                 <div className="mb-3 password_container">

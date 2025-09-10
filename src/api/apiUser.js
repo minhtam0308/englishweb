@@ -151,6 +151,23 @@ const PostComment = async (comment) => {
     }
 }
 
+const PostOtpPass = async (email) => {
+    try {
+        let res = await axios.post('api/PostSendOTPEmail', { email });
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+const GetAuthUserLimitTime = async () => {
+    try {
+        let res = await axios.get('api/GetAuthUserLimitTime');
+        return res;
+    } catch (e) {
+        console.log(e)
+    }
+}
 export {
     GetAllQAByUser,
     PostCheckCorrAns,
@@ -166,5 +183,7 @@ export {
     PutUpdateUser,
     Get5HisUser,
     DelHisUser,
-    PostComment
+    PostComment,
+    PostOtpPass,
+    GetAuthUserLimitTime
 }

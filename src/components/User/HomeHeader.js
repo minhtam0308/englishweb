@@ -111,6 +111,7 @@ const HomeHeader = () => {
             <RModalLoginUser
                 show={showLogin}
                 handleClose={handleCloseLogin}
+                handleShow={handleShowLogin}
             />
 
             <ModalPrivate
